@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TourGroupController;
+use App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +15,13 @@ use App\Http\Controllers\TourGroupController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*-----common_routes------*/
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/blogs',[BlogController::class, 'index']);
+Route::get('blog/details/{id}',[BlogController::class, 'details']);
+/*-----common_routes------*/
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
@@ -46,6 +49,8 @@ Route::prefix('group')->group(function(){
     Route::post('/login/owner',[TourGroupController::class, 'login']);
     Route::get('/dashboard',[TourGroupController::class, 'dashboard'])->middleware('group');
     Route::get('/logout',[TourGroupController::class, 'logout'])->middleware('group');
+    Route::get('/blog/add',[BlogController::class, 'add'])->middleware('group');
+    Route::post('/blog/create',[BlogController::class, 'create'])->middleware('group');
 });
 
 /*----------TourGroup_routes_end----------*/

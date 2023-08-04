@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TourGroupController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\TourController;
 use App\Http\Controllers\FeedController;
 
 /*
@@ -24,7 +25,9 @@ Route::get('/blogs',[BlogController::class, 'index']);
 Route::get('/feed',[FeedController::class, 'index']);
 Route::get('blog/details/{id}',[BlogController::class, 'details']);
 Route::get('feed/details/{id}',[FeedController::class, 'details']);
-/*-----common_routes------*/
+Route::get('tour/plans',[TourController::class, 'index']);
+Route::get('upcomming/tour/plans',[TourController::class, 'upcomming']);
+/*-----common_routes ends------*/
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

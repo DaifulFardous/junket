@@ -45,8 +45,8 @@
             </div>
             <div class="col-lg-6 col-md-6">
               <ul class="topbar-others-options">
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register.html">Sign up</a></li>
+                <li><a href="{{ url('user/login') }}">Login</a></li>
+                <li><a href="{{ url('register') }}">Sign up</a></li>
               </ul>
             </div>
           </div>
@@ -57,7 +57,7 @@
           <div class="container">
             <div class="main-responsive-menu">
               <div class="logo">
-                <a href="index.html">
+                <a href="{{ url('/') }}">
                   <img src="{{ asset('frontend') }}/img/logo.png" alt="logo" />
                 </a>
               </div>
@@ -67,7 +67,7 @@
         <div class="main-navbar">
             <div class="container">
               <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{ url('/') }}">
                   <img src="{{ asset('frontend') }}/img/logo_black.png" alt="logo" />
                 </a>
                 <div
@@ -83,18 +83,15 @@
                     </li>
                     <li class="nav-item">
                       <a href="#" class="nav-link"
-                        >Tour Plans <i class="fas fa-angle-down"></i
-                      ></a>
-                      <ul class="dropdown-menu">
-                        <li class="nav-item">
-                          <a href="contact.html" class="nav-link">Contact v1</a>
-                        </li>
-                        <li class="nav-item">
-                          <a href="contact-v2.html" class="nav-link"
-                            >Contact v2</a
-                          >
-                        </li>
-                      </ul>
+                        >Tour Plans <i class="fas fa-angle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item">
+                                <a href="{{ url("tour/plans") }}" class="nav-link">Running Plans</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url("upcomming/tour/plans") }}" class="nav-link">Upcomming Plans</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                       <a href="{{ url('blogs') }}" class="nav-link">Blogs </a>

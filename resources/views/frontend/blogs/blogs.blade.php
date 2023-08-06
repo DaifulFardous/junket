@@ -34,10 +34,15 @@
                                     <img src="{{ asset('assets/uploads/blogs/'.$blog->image) }}" style="height: 240px; width: 460px" alt="img">
                                 </a>
                             </div>
+                            <div class="new_four_card_lists">
+                                <ul>
+                                    <li>Created by- {{ $blog->group_name }} <i class="fas fa-circle"></i></li>
+                                </ul>
+                            </div>
                             <div class="news_four_card_conrent">
                                 <div class="new_four_card_lists">
                                     <ul>
-                                        <li>{{ $blog->created_at }} <i class="fas fa-circle"></i></li>
+                                        <li>Date: {{ $blog->created_at }} <i class="fas fa-circle"></i></li>
                                     </ul>
                                 </div>
                                 <h3><a href="news-details.html"> {{ $blog->heading }}</a></h3>

@@ -15,6 +15,7 @@ class CreateFeedTable extends Migration
     {
         Schema::create('feeds', function (Blueprint $table) {
             $table->id();
+            $table->string('group_name');
             $table->string('image');
             $table->string('heading');
             $table->text('short_description');

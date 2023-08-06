@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TourGroupController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TourController;
+use App\Http\Controllers\FeedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/blogs',[BlogController::class, 'index']);
+Route::get('/feed',[FeedController::class, 'index']);
 Route::get('blog/details/{id}',[BlogController::class, 'details']);
 Route::get('tour/plans',[TourController::class, 'index']);
 Route::get('upcomming/tour/plans',[TourController::class, 'upcomming']);
+Route::get('feed/details/{id}',[FeedController::class, 'details']);
 /*-----common_routes ends------*/
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -54,6 +57,8 @@ Route::prefix('group')->group(function(){
     Route::get('/logout',[TourGroupController::class, 'logout'])->middleware('group');
     Route::get('/blog/add',[BlogController::class, 'add'])->middleware('group');
     Route::post('/blog/create',[BlogController::class, 'create'])->middleware('group');
+    Route::get('/feed/add',[FeedController::class, 'add'])->middleware('group');
+    Route::post('/feed/create',[FeedController::class, 'create'])->middleware('group');
 });
 
 /*----------TourGroup_routes_end----------*/

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -24,6 +25,7 @@ class BlogController extends Controller
             $file->move('assets/uploads/blogs',$fileName);
             $blog->image = $fileName;
         }
+        $blog->group_name = Auth::guard('group')->user()->group_name;
         $blog->heading = $request->heading;
         $blog->short_description = $request->short_description;
         $blog->long_description = $request->long_description;

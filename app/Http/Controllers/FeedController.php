@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Feed;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FeedController extends Controller{
 
@@ -25,6 +26,7 @@ class FeedController extends Controller{
             $file->move('assets/uploads/feeds',$fileName);
             $feed->image = $fileName;
         }
+        $feed->group_name = Auth::guard('group')->user()->group_name;
         $feed->heading = $request->heading;
         $feed->short_description = $request->short_description;
         $feed->long_description = $request->long_description;

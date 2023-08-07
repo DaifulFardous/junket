@@ -24,9 +24,9 @@ Route::get('/', function () {
 Route::get('/blogs',[BlogController::class, 'index']);
 Route::get('/feed',[FeedController::class, 'index']);
 Route::get('blog/details/{id}',[BlogController::class, 'details']);
-Route::get('feed/details/{id}',[FeedController::class, 'details']);
 Route::get('tour/plans',[TourController::class, 'index']);
 Route::get('upcomming/tour/plans',[TourController::class, 'upcomming']);
+Route::get('feed/details/{id}',[FeedController::class, 'details']);
 /*-----common_routes ends------*/
 Route::get('/dashboard', function () {
     return view('dashboard');

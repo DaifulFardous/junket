@@ -201,6 +201,8 @@ section {
 
 .section_padding {
     padding: 100px 0;
+    margin-left: 200px;
+    
 }
 
 .section_padding_top {
@@ -4300,6 +4302,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .news_author_area {
     display: flex;
     padding-top: 20px;
+    padding-bottom: 30px;
 }
 
 .news_author_img {
@@ -4314,14 +4317,17 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .news_author_area_name {
-    padding-left: 15px;
+    margin-top: -20px;
+    padding-left: 13px;
+   
 }
 
 .news_author_area_name p {
-    padding: 4px 0 0 0;
+    
     font-size: 14px;
-    display: flex;
     align-items: center;
+    margin-top: 60px;
+    margin-left: -171px;
 }
 
 .news_author_area_name p i {
@@ -4341,6 +4347,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .news_item_img {
     border-radius: 10px;
     overflow: hidden;
+    margin-top: 25px;
 }
 
 .news_item_img img {
@@ -4348,7 +4355,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .news_item_content {
-    padding: 25px 5px 0px 0;
+    padding: 10px 5px 0px 0;
 }
 
 .news_item_content h3 {
@@ -4365,7 +4372,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .news_item_content p {
-    padding-top: 13px;
+    padding-top: 2px;
+    margin-top: -28px;
 }
 
 /* =============================

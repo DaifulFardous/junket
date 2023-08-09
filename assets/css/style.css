@@ -95,6 +95,36 @@ img {
 .pt-100 {
     padding-top: 100px;
 }
+.btns{
+    position: absolute;
+    left: 180px;
+    background: transparent;
+    
+    
+.btn4{
+    border: none;
+    background: transparent;
+    font-size: 30px;
+    outline: none;
+}
+.likes{
+    left: 30px;
+    top: 30px;
+}
+.love{
+    
+    display: flex;
+}
+
+}
+.btn5{
+    left: 500px;
+    border: none;
+    background: transparent;
+    padding-left: 500px;
+    font-size: 30px;
+    outline: none;
+}
 
 .mb-30 {
     margin-bottom: 30px;
@@ -193,7 +223,7 @@ section {
 
 .form-control:focus {
     color: var(--heading-color);
-    background-color: #fff;
+    background-color: #ddd7d7;
     border: 1px solid var(--main-color);
     outline: none;
     box-shadow: none;
@@ -203,6 +233,10 @@ section {
     padding: 100px 0;
     margin-left: 200px;
     
+}
+.reaction-bar{
+    background-color: #ffffff;
+    height: 50px;
 }
 
 .section_padding_top {
@@ -4348,6 +4382,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     border-radius: 10px;
     overflow: hidden;
     margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .news_item_img img {

@@ -6,6 +6,7 @@ use App\Http\Controllers\TourGroupController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\FeedController;
+use App\Http\Controllers\TourPlanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +60,8 @@ Route::prefix('group')->group(function(){
     Route::post('/blog/create',[BlogController::class, 'create'])->middleware('group');
     Route::get('/feed/add',[FeedController::class, 'add'])->middleware('group');
     Route::post('/feed/create',[FeedController::class, 'create'])->middleware('group');
+    Route::get('/running/plan/add',[TourPlanController::class, 'addRunningPlan'])->middleware('group');
+    Route::post('/running/plan/create',[TourPlanController::class, 'RunningPlanCreate'])->middleware('group');
 });
 
 /*----------TourGroup_routes_end----------*/

@@ -17,11 +17,11 @@ Add Blog
         </div>
         <div class="form-group">
             <label>Blog Short Description</label>
-            <textarea name="short_description" class="form-control"></textarea>
+            <textarea name="short_description" class="form-control mytextarea"></textarea>
         </div>
         <div class="form-group">
             <label>Blog long Description</label>
-            <textarea name="long_description" class="form-control"></textarea>
+            <textarea name="long_description" class="form-control mytextarea"></textarea>
         </div>
         <button type="submit" class="btn btn-success">Upload</button>
       </form>

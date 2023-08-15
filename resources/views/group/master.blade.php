@@ -18,6 +18,13 @@
 
     <!-- SB Admin CSS - Include with every page -->
     <link href="{{ asset('admin') }}/css/sb-admin.css" rel="stylesheet">
+    {{-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+      tinymce.init({
+        selector: '.mytextarea'
+      });
+    </script> --}}
 
 </head>
 
@@ -85,6 +92,18 @@
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="{{ url("group/feed/add") }}">Add Feed</a><br>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Tour Plans<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ url("group/running/plan/add") }}">Add Running Plan</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url("group/blog/add") }}">Add Upcommimg Plan</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -180,8 +199,6 @@
 
     </div>
     <!-- /#wrapper -->
-
-    <!-- Core Scripts - Include with every page -->
     <script src="{{ asset('admin') }}/js/jquery-1.10.2.js"></script>
     <script src="{{ asset('admin') }}/js/bootstrap.min.js"></script>
     <script src="{{ asset('admin') }}/js/plugins/metisMenu/jquery.metisMenu.js"></script>

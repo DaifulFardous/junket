@@ -62,6 +62,8 @@ Route::prefix('group')->group(function(){
     Route::post('/feed/create',[FeedController::class, 'create'])->middleware('group');
     Route::get('/running/plan/add',[TourPlanController::class, 'addRunningPlan'])->middleware('group');
     Route::post('/running/plan/create',[TourPlanController::class, 'RunningPlanCreate'])->middleware('group');
+    Route::get('/upcomming/plan/add',[TourPlanController::class, 'addUpcommingPlan'])->middleware('group');
+    Route::post('/upcomming/plan/create',[TourPlanController::class, 'UpcommingPlanCreate'])->middleware('group');
 });
 
 /*----------TourGroup_routes_end----------*/

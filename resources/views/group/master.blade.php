@@ -103,7 +103,7 @@
                                     <a href="{{ url("group/running/plan/add") }}">Add Running Plan</a>
                                 </li>
                                 <li>
-                                    <a href="{{ url("group/blog/add") }}">Add Upcommimg Plan</a>
+                                    <a href="{{ url("group/upcomming/plan/add") }}">Add Upcommimg Plan</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

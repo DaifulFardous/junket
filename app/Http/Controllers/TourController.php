@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TourPlan;
+use App\Models\UpcommingTourPlan;
 
 class TourController extends Controller
 {
@@ -12,6 +13,7 @@ class TourController extends Controller
       return view('frontend.tourPlans.tours',compact('runningplans'));
     }
     public function upcomming(){
-        return view('frontend.tourPlans.upcomming');
+        $upcommingPlans = UpcommingTourPlan::all();
+        return view('frontend.tourPlans.upcomming',compact('upcommingPlans'));
     }
 }

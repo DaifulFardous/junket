@@ -20,6 +20,7 @@ class CreateBlogsTable extends Migration
             $table->string('heading');
             $table->text('short_description');
             $table->text('long_description');
+            $table->string('status');
             $table->timestamps();
         });
     }

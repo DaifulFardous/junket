@@ -41,6 +41,18 @@ Route::prefix('admin')->group(function(){
     Route::post('/login/owner',[AdminController::class, 'login']);
     Route::get('/dashboard',[AdminController::class, 'dashboard'])->middleware('admin');
     Route::get('/logout',[AdminController::class, 'logout'])->middleware('admin');
+    Route::get('/blog_list',[AdminController::class, 'get_blog_list']);
+    Route::get('/blogEdit/{id}',[BlogController::class, 'blogEdit']);
+    Route::post('/blog/update/{id}',[BlogController::class, 'blogUpdate']);
+    Route::get('/blog/delete/{id}',[BlogController::class, 'blogDelete']);
+    Route::get('/blog/status/{id}',[BlogController::class, 'blogStatus']);
+    Route::get('/feed_list',[AdminController::class, 'get_feed_list']);
+    Route::get('/feedEdit/{id}',[FeedController::class, 'feedEdit']);
+    Route::post('/feed/update/{id}',[FeedController::class, 'feedUpdate']);
+    Route::get('/feed/delete/{id}',[FeedController::class, 'feedDelete']);
+    Route::get('/feed/status/{id}',[FeedController::class, 'feedStatus']);
+
+
 
 
 });

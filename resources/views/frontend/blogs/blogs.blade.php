@@ -30,7 +30,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                         <div class="news_four_card">
                             <div class="news_four_card_img">
-                                <a href="news-details.html">
+                                <a href="{{ url('blog/details/'.$blog->id) }}">
                                     <img src="{{ asset('assets/uploads/blogs/'.$blog->image) }}" style="height: 240px; width: 460px" alt="img">
                                 </a>
                             </div>

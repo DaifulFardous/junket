@@ -21,4 +21,8 @@ class TourController extends Controller
         $groups = TourGroup::all();
         return view('frontend.groups.groups', compact('groups'));
     }
+    public function runningPlanDetails($id){
+        $plan = TourPlan::find($id);
+        return view('frontend.tourPlans.runningDetails',compact('plan'));
+    }
 }

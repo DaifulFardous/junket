@@ -71,6 +71,17 @@ Route::prefix('group')->group(function(){
     Route::post('/blog/create',[BlogController::class, 'create'])->middleware('group');
     Route::get('/feed/add',[FeedController::class, 'add'])->middleware('group');
     Route::post('/feed/create',[FeedController::class, 'create'])->middleware('group');
+    Route::get('/feed/list/{group_name}',[TourGroupController::class, 'feedDetails'])->middleware('group');
+    Route::get('/feedEdit/{id}',[TourGroupController::class, 'feedEdit'])->middleware('group');
+    Route::post('/feed/update/{id}',[TourGroupController::class, 'feedUpdate'])->middleware('group');
+    Route::get('/feed/delete/{id}',[TourGroupController::class, 'feedDelete'])->middleware('group');
+    Route::get('/blog/list/{group_name}',[TourGroupController::class, 'blogDetails'])->middleware('group');
+    Route::get('/blogEdit/{id}',[TourGroupController::class, 'blogEdit'])->middleware('group');
+    Route::post('/blog/update/{id}',[TourGroupController::class, 'blogUpdate'])->middleware('group');
+    Route::get('/blog/delete/{id}',[TourGroupController::class, 'blogDelete'])->middleware('group');
+
+
+
 });
 
 /*----------TourGroup_routes_end----------*/

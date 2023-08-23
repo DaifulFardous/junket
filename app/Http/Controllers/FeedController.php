@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class FeedController extends Controller{
 
     public function index(){
-        $feeds =  Feed::where('status','=','active')->get();;
+        $feeds =  Feed::where('status','=','active')->get();
         return view('frontend.feeds.feed', compact('feeds'));
     }
 

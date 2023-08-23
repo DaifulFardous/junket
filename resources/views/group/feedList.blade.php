@@ -172,19 +172,56 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h1 class="page-header">@yield('header')</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            @yield('content')
-        </div>
-        <!-- /#page-wrapper -->
+        <div class="container" style=".container {
+  padding: 2rem 0rem;
+}
+
+h4 {
+  margin: 2rem 0rem 1rem;
+}
+
+.table-image {
+  td, th {
+    vertical-align: middle;
+  }
+}">
+  <div class="row">
+    <div class="col-12">
+    <h3 style="text-align: center">Feed Lists</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Heading</th>
+            <th scope="col">Short Description</th>
+            <th scope="col">image</th>
+            <th scope="col">Group Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach($feeds as $feed)
+          <tr>
+            <th scope="row">{{ $feed->heading }}</th>
+            <td>{{ $feed->short_description }}</td>
+            <td>{{ $feed->image }}</td>
+            <td>{{ $feed->group_name }}</td>
+            <td>{{ $feed->status }}</td>
+            <td>
+              <button type="button" class="btn btn-primary" onclick="window.location.href='{{ url("group/feedEdit/$feed->id") }}'">Edit</button>
+              <button type="button" class="btn btn-success" onclick="window.location.href='{{ url("group/feed/delete/$feed->id") }}'">Delete</button>
+            
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
     </div>
+    
     <!-- /#wrapper -->
 
     <!-- Core Scripts - Include with every page -->

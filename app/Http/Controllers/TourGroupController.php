@@ -99,7 +99,7 @@ class TourGroupController extends Controller
             $file = $request->file('image');
             $ext = $file->getClientOriginalExtension();
             $fileName = time().'.'.$ext;
-            $file->move('assets/uploads/feeds',$fileName);
+            $file->move('assets/uploads/blogs',$fileName);
             $blog->image = $fileName;
         }
         $blog->heading = $request->heading;

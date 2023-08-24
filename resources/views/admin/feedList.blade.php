@@ -172,6 +172,24 @@
                 <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Dashboard</h1>
+                    <div class="mx-auto pull-right" >
+            <div class="search" style="float: right;
+    margin-top: -2rem;
+            ">
+                <form action="{{ url("admin/feed/search") }}" method="GET" role="search">
+
+                    <div class="input-group">
+                        <span class="input-group-btn mr-5 mt-1">
+                            <button class="btn btn-info" type="submit" title="Search projects" style="margin-left:1600px">
+                                search
+                            </button>
+                        </span>
+                        <input type="text" class="form-control mr-2" name="term" placeholder="Search by Heading" id="term" style="width: 150px; float: right;
+                        margin-right: 220px">
+                    </div>
+                </form>
+            </div>
+        </div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

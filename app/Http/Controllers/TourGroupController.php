@@ -114,4 +114,36 @@ class TourGroupController extends Controller
         $blog->delete();
         return redirect('group/blog/list/'.$blog->group_name);
     }
+    public function blogSearch(Request $request){
+        
+        $blogs = Blog::where([
+           ['heading', '!=', NULL],
+           [function ($query) use ($request){
+            if (($term = $request->term)){
+                $query->orWhere('heading','LIKE','%' . $term . '%')->get();
+            }
+           }] 
+        ])
+            ->orderBy("id", "desc")
+            ->paginate(10);
+
+            return view('group.blogList', compact('blogs'));
+        
+    }
+    public function feedSearch(Request $request){
+        
+        $feeds = Feed::where([
+           ['heading', '!=', NULL],
+           [function ($query) use ($request){
+            if (($term = $request->term)){
+                $query->orWhere('heading','LIKE','%' . $term . '%')->get();
+            }
+           }] 
+        ])
+            ->orderBy("id", "desc")
+            ->paginate(10);
+
+            return view('group.feedList', compact('feeds'));
+        
+    }
 }

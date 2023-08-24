@@ -76,5 +76,21 @@ class BlogController extends Controller
         $blog->update();
         return redirect()->back();
     }
+    public function blogSearch(Request $request){
+        
+        $blogs = Blog::where([
+           ['heading', '!=', NULL],
+           [function ($query) use ($request){
+            if (($term = $request->term)){
+                $query->orWhere('heading','LIKE','%' . $term . '%')->get();
+            }
+           }] 
+        ])
+            ->orderBy("id", "desc")
+            ->paginate(10);
+
+            return view('admin.blogList', compact('blogs'));
+        
+    }
 
 }

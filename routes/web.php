@@ -46,11 +46,14 @@ Route::prefix('admin')->group(function(){
     Route::post('/blog/update/{id}',[BlogController::class, 'blogUpdate']);
     Route::get('/blog/delete/{id}',[BlogController::class, 'blogDelete']);
     Route::get('/blog/status/{id}',[BlogController::class, 'blogStatus']);
+    Route::get('/blog/search',[BlogController::class, 'blogSearch']);
+
     Route::get('/feed_list',[AdminController::class, 'get_feed_list']);
     Route::get('/feedEdit/{id}',[FeedController::class, 'feedEdit']);
     Route::post('/feed/update/{id}',[FeedController::class, 'feedUpdate']);
     Route::get('/feed/delete/{id}',[FeedController::class, 'feedDelete']);
     Route::get('/feed/status/{id}',[FeedController::class, 'feedStatus']);
+    Route::get('/feed/search',[FeedController::class, 'feedSearch']);
 
 
 
@@ -75,11 +78,13 @@ Route::prefix('group')->group(function(){
     Route::get('/feedEdit/{id}',[TourGroupController::class, 'feedEdit'])->middleware('group');
     Route::post('/feed/update/{id}',[TourGroupController::class, 'feedUpdate'])->middleware('group');
     Route::get('/feed/delete/{id}',[TourGroupController::class, 'feedDelete'])->middleware('group');
+    Route::get('/feed/search',[FeedController::class, 'feedSearch']);
     Route::get('/blog/list/{group_name}',[TourGroupController::class, 'blogDetails'])->middleware('group');
     Route::get('/blogEdit/{id}',[TourGroupController::class, 'blogEdit'])->middleware('group');
     Route::post('/blog/update/{id}',[TourGroupController::class, 'blogUpdate'])->middleware('group');
     Route::get('/blog/delete/{id}',[TourGroupController::class, 'blogDelete'])->middleware('group');
-
+    Route::get('/blog/search',[TourGroupController::class, 'blogSearch'])->middleware('group');
+    Route::get('/feed/search',[TourGroupController::class, 'feedSearch'])->middleware('group');
 
 
 });

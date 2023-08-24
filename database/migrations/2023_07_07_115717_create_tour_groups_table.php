@@ -17,12 +17,12 @@ class CreateTourGroupsTable extends Migration
             $table->id();
             $table->string('group_name')->unique();
             $table->string('owner_name');
+            $table->string('image');
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->string('password');
             $table->text('location');
             $table->text('about_us');
-            $table->string('image');
             $table->timestamps();
         });
     }

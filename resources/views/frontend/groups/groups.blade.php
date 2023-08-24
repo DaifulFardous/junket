@@ -5,10 +5,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="common_bannner_text">
-                    <h2>Upcomming Tour Plans</h2>
+                    <h2>Tour Groups</h2>
                     <ul>
                         <li><a href="{{ url("/") }}">Home</a></li>
-                        <li><span><i class="fas fa-circle"></i></span>Upcomming Tour Plans</li>
+                        <li><span><i class="fas fa-circle"></i></span>Tour Groups</li>
                     </ul>
                 </div>
             </div>
@@ -22,28 +22,22 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="row">
-                    @foreach ($upcommingPlans as $plan)
+                    @foreach ($groups as $group)
                     <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                         <div class="news_four_card">
                             <div class="news_four_card_img">
                                 <a href="news-details.html">
-                                    <img src="{{ asset('assets/uploads/upcommingTours/'.$plan->image) }}" style="height: 240px; width: 460px" alt="img">
+                                    <img src="{{ asset('assets/uploads/groups/'.$group->image) }}" style="height: 240px; width: 460px" alt="img">
                                 </a>
                             </div>
                             <div class="new_four_card_lists">
                                 <ul>
-                                    <li>Created by- {{ $plan->group_name }} <i class="fas fa-circle"></i></li>
+                                    <li>Owner name- {{ $group->owner_name }} <i class="fas fa-circle"></i></li>
                                 </ul>
                             </div>
                             <div class="news_four_card_conrent">
-                                <div class="new_four_card_lists">
-                                    <ul>
-                                        <li>{{ $plan->created_at }} <i class="fas fa-circle"></i></li>
-                                    </ul>
-                                </div>
-                                <h3><a href="news-details.html"> {{ $plan->location }}</a></h3>
-                                    <p>{{ $plan->short_description }}</p>
-                                <a href="">Read more...</a>
+                                <h3><a href="news-details.html"> {{ $group->group_name }}</a></h3>
+                                <a href="">Read details...</a>
                             </div>
                         </div>
                     </div>

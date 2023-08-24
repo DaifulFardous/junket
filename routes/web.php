@@ -6,6 +6,7 @@ use App\Http\Controllers\TourGroupController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\FeedController;
+use App\Http\Controllers\TourPlanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ Route::get('blog/details/{id}',[BlogController::class, 'details']);
 Route::get('tour/plans',[TourController::class, 'index']);
 Route::get('upcomming/tour/plans',[TourController::class, 'upcomming']);
 Route::get('feed/details/{id}',[FeedController::class, 'details']);
+Route::get('tour/groups',[TourController::class, 'groups']);
+Route::get('tours/details/{id}',[TourController::class, 'runningPlanDetails']);
 /*-----common_routes ends------*/
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -87,6 +90,10 @@ Route::prefix('group')->group(function(){
     Route::get('/feed/search',[TourGroupController::class, 'feedSearch'])->middleware('group');
 
 
+    Route::get('/running/plan/add',[TourPlanController::class, 'addRunningPlan'])->middleware('group');
+    Route::post('/running/plan/create',[TourPlanController::class, 'RunningPlanCreate'])->middleware('group');
+    Route::get('/upcomming/plan/add',[TourPlanController::class, 'addUpcommingPlan'])->middleware('group');
+    Route::post('/upcomming/plan/create',[TourPlanController::class, 'UpcommingPlanCreate'])->middleware('group');
 });
 
 /*----------TourGroup_routes_end----------*/

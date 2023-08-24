@@ -21,6 +21,7 @@ class TourGroup extends Authenticatable
     protected $fillable = [
         'group_name',
         'owner_name',
+        'image',
         'email',
         'phone',
         'password',

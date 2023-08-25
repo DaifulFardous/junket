@@ -84,6 +84,9 @@
                                 <li>
                                     <a href="{{ url("group/blog/add") }}">Add Blog</a>
                                 </li>
+                                <li>
+                                <a href="{{ url('group/blog/list/' . Auth::guard('group')->user()->group_name) }}">Blog List</a><br>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -92,6 +95,9 @@
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="{{ url("group/feed/add") }}">Add Feed</a><br>
+                                </li>
+                                <li>
+                                <a href="{{ url('group/feed/list/' . Auth::guard('group')->user()->group_name) }}">Feed List</a><br>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

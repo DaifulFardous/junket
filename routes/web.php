@@ -7,6 +7,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\TourPlanController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +31,14 @@ Route::get('upcomming/tour/plans',[TourController::class, 'upcomming']);
 Route::get('feed/details/{id}',[FeedController::class, 'details']);
 Route::get('tour/groups',[TourController::class, 'groups']);
 Route::get('tours/details/{id}',[TourController::class, 'runningPlanDetails']);
+Route::get('upcomming/tours/details/{id}',[TourController::class, 'upcommingPlanDetails']);
 /*-----common_routes ends------*/
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+Route::post('running/tour/comment/create',[CommentController::class,'runningCommentCreate'])->middleware(['auth']);
+Route::post('upcomming/tour/comment/create',[CommentController::class,'upcommingCommentCreate'])->middleware(['auth']);
 
 /*----------Admin_routes_start----------*/
 Route::prefix('admin')->group(function(){

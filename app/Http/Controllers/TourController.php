@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\TourGroup;
 use Illuminate\Http\Request;
 use App\Models\TourPlan;
@@ -22,7 +23,15 @@ class TourController extends Controller
         return view('frontend.groups.groups', compact('groups'));
     }
     public function runningPlanDetails($id){
+        $count = Comment::where('tour_type','Running')->where('plan_id',$id)->count();
+        $comments = Comment::where('tour_type','Running')->where('plan_id',$id)->get();
         $plan = TourPlan::find($id);
-        return view('frontend.tourPlans.runningDetails',compact('plan'));
+        return view('frontend.tourPlans.runningDetails',compact('plan','count','comments'));
+    }
+    public function upcommingPlanDetails($id){
+        $count = Comment::where('tour_type','Upcomming')->where('plan_id',$id)->count();
+        $comments = Comment::where('tour_type','Upcomming')->where('plan_id',$id)->get();
+        $plan = UpcommingTourPlan::find($id);
+        return view('frontend.tourPlans.upcommingDetails',compact('plan','count','comments'));
     }
 }

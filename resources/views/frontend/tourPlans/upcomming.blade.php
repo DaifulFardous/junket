@@ -26,7 +26,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                         <div class="news_four_card">
                             <div class="news_four_card_img">
-                                <a href="news-details.html">
+                                <a href="{{ url('upcomming/tours/details/'.$plan->id) }}">
                                     <img src="{{ asset('assets/uploads/upcommingTours/'.$plan->image) }}" style="height: 240px; width: 460px" alt="img">
                                 </a>
                             </div>
@@ -41,9 +41,9 @@
                                         <li>{{ $plan->created_at }} <i class="fas fa-circle"></i></li>
                                     </ul>
                                 </div>
-                                <h3><a href="news-details.html"> {{ $plan->location }}</a></h3>
+                                <h3><a href="{{ url('upcomming/tours/details/'.$plan->id) }}"> {{ $plan->location }}</a></h3>
                                     <p>{{ $plan->short_description }}</p>
-                                <a href="">Read more...</a>
+                                <a href="{{ url('upcomming/tours/details/'.$plan->id) }}">Read more...</a>
                             </div>
                         </div>
                     </div>

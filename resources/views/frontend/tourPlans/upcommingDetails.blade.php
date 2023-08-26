@@ -5,10 +5,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="common_bannner_text">
-                    <h2>Running Plan Details</h2>
+                    <h2>Upcomming Plan Details</h2>
                     <ul>
                         <li><a href="{{ url("/") }}">Home</a></li>
-                        <li><span><i class="fas fa-circle"></i></span>Running Plan Details</li>
+                        <li><span><i class="fas fa-circle"></i></span>Upcomming Plan Details</li>
                     </ul>
                 </div>
             </div>
@@ -21,7 +21,7 @@
             <div class="col-lg-10 offset-lg-1">
                 <div class="news_detail_wrapper">
                     <div class="news_details_content_area">
-                        <img src="{{ asset('assets/uploads/runningTours/'.$plan->image) }}" style="height: 800px; width: 1400px" alt="img">
+                        <img src="{{ asset('assets/uploads/upcommingTours/'.$plan->image) }}" style="height: 800px; width: 1400px" alt="img">
                     </div>
                     <div class="row">
                         <div class="col-lg-10 offset-lg-1">
@@ -46,31 +46,30 @@
                                 <h5>{{ $plan->capacity }}</h5>
                                 <h3>Booking Cost</h3>
                                 <h5>{{ $plan->booking_cost }}</h5>
-                                <a href="" class="mt-3 btn btn-success">Book Now</a>
                                 <div class="section_heading_center">
                                     <h2>Comments</h2>
                                 </div>
-                                <div class="comment_area">
-                                    <h3>{{ $count }} Comments</h3>
-                                    @foreach ($comments as $comment)
-                                    <div class="comment_area_boxed">
-                                        <div class="comment_text">
-                                            <div class="comment_author_name">
-                                                <h4>{{ $comment->user->name }}</h4>
+                                    <div class="comment_area">
+                                        <h3>{{ $count }} Comments</h3>
+                                        @foreach ($comments as $comment)
+                                        <div class="comment_area_boxed">
+                                            <div class="comment_text">
+                                                <div class="comment_author_name">
+                                                    <h4>{{ $comment->user->name }}</h4>
+                                                </div>
+                                                <p>{{ $comment->comment }}</p>
                                             </div>
-                                            <p>{{ $comment->comment }}</p>
                                         </div>
+                                        @endforeach
                                     </div>
-                                    @endforeach
-                                </div>
                                 <h3>Leave a comment</h3>
                                 <div class="contact_form">
-                                    <form action="{{ url('running/tour/comment/create') }}" method="post">
+                                    <form action="{{ url('upcomming/tour/comment/create') }}" method="POST">
                                         @csrf
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <input type="hidden" name="plan_id" value="{{ $plan->id }}">
-                                                <textarea class="form-control bg_input" rows="5" name="comment"
+                                                <textarea name="comment" class="form-control bg_input" rows="5"
                                                     placeholder="Write your comment here..."></textarea>
                                             </div>
                                         </div>

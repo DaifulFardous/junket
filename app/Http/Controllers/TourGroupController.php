@@ -61,7 +61,7 @@ class TourGroupController extends Controller
         return view('group.feedEdit', compact('feed'));
     }
     public function feedUpdate(Request $request,$id){
-    
+
         $feed = Feed::findOrFail($id);
         if($request->hasFile('image'))
         {
@@ -92,7 +92,7 @@ class TourGroupController extends Controller
         return view('group.blogEdit', compact('blog'));
     }
     public function blogUpdate(Request $request,$id){
-    
+
         $blog = Blog::findOrFail($id);
         if($request->hasFile('image'))
         {

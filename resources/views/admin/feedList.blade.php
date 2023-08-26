@@ -18,7 +18,7 @@
 
     <!-- SB Admin CSS - Include with every page -->
     <link href="{{ asset('admin') }}/css/sb-admin.css" rel="stylesheet">
-    
+
 
 </head>
 
@@ -90,75 +90,6 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        {{-- <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-                        </li>
-                        <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="blank.html">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login Page</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li> --}}
                     </ul>
                     <!-- /#side-menu -->
                 </div>
@@ -235,7 +166,14 @@ h4 {
             <td>
               <button type="button" class="btn btn-primary" onclick="window.location.href='{{ url("admin/feedEdit/$feed->id") }}'">Edit</button>
               <button type="button" class="btn btn-success" onclick="window.location.href='{{ url("admin/feed/delete/$feed->id") }}'">Delete</button>
-            <button type="button" class="btn btn-danger" onclick="window.location.href='{{ url("admin/feed/status/$feed->id") }}'">Permission</button>
+            @guest
+            @if ($feed->status == 'pending')
+              <button type="button" class="btn btn-danger" onclick="window.location.href='{{ url("admin/feed/status/$feed->id") }}'">Active</button>
+            @endif
+            @if ($feed->status == 'active')
+            <button type="button" class="btn btn-danger" onclick="window.location.href='{{ url("admin/feed/status/$feed->id") }}'">Pending</button>
+            @endif
+        @endguest
             </td>
           </tr>
           @endforeach
@@ -248,7 +186,7 @@ h4 {
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper --></div>
-            
+
 
     </div>
     <!-- /#wrapper -->

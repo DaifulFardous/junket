@@ -49,8 +49,22 @@
             </div>
             <div class="col-lg-6 col-md-6">
               <ul class="topbar-others-options">
-                <li><a href="{{ url('user/login') }}">Login</a></li>
-                <li><a href="{{ url('register') }}">Sign up</a></li>
+                @guest
+                    @if(Route::has('login'))
+                        <li><a href="{{ url('user/login') }}">Login</a></li>
+                        <li><a href="{{ url('register') }}">Sign up</a></li>
+                    @endif
+                    @else
+                        <li> <a  href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                logout
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+                @endguest
               </ul>
             </div>
           </div>
@@ -80,7 +94,7 @@
                 >
                   <ul class="navbar-nav">
                     <li class="nav-item">
-                      <a href="#" class="nav-link active"> Home </a>
+                      <a href="{{ url('/') }}" class="nav-link active"> Home </a>
                     </li>
                     <li class="nav-item">
                       <a href="{{ url("tour/groups") }}" class="nav-link"> Groups </a>

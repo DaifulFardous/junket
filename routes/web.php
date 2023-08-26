@@ -7,6 +7,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\TourPlanController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Select2SearchController;
 
 /*
@@ -32,10 +33,14 @@ Route::get('upcomming/tour/plans',[TourController::class, 'upcomming']);
 Route::get('feed/details/{id}',[FeedController::class, 'details']);
 Route::get('tour/groups',[TourController::class, 'groups']);
 Route::get('tours/details/{id}',[TourController::class, 'runningPlanDetails']);
+Route::get('upcomming/tours/details/{id}',[TourController::class, 'upcommingPlanDetails']);
 /*-----common_routes ends------*/
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+Route::post('running/tour/comment/create',[CommentController::class,'runningCommentCreate'])->middleware(['auth']);
+Route::post('upcomming/tour/comment/create',[CommentController::class,'upcommingCommentCreate'])->middleware(['auth']);
 
 /*----------Admin_routes_start----------*/
 Route::prefix('admin')->group(function(){
@@ -79,6 +84,10 @@ Route::prefix('group')->group(function(){
     Route::post('/blog/create',[BlogController::class, 'create'])->middleware('group');
     Route::get('/feed/add',[FeedController::class, 'add'])->middleware('group');
     Route::post('/feed/create',[FeedController::class, 'create'])->middleware('group');
+    Route::get('/running/plan/add',[TourPlanController::class, 'addRunningPlan'])->middleware('group');
+    Route::post('/running/plan/create',[TourPlanController::class, 'RunningPlanCreate'])->middleware('group');
+    Route::get('/upcomming/plan/add',[TourPlanController::class, 'addUpcommingPlan'])->middleware('group');
+    Route::post('/upcomming/plan/create',[TourPlanController::class, 'UpcommingPlanCreate'])->middleware('group');
     Route::get('/feed/list/{group_name}',[TourGroupController::class, 'feedDetails'])->middleware('group');
     Route::get('/feedEdit/{id}',[TourGroupController::class, 'feedEdit'])->middleware('group');
     Route::post('/feed/update/{id}',[TourGroupController::class, 'feedUpdate'])->middleware('group');

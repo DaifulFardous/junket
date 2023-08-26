@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style.css" />
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/responsive.css" />
     <link rel="icon" type="image/png" href="{{ asset('frontend') }}/img/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
   </head>
 
   <body>
@@ -104,6 +108,26 @@
                     </li>
                     <li class="nav-item">
                       <a href="#" class="nav-link">Contact </a>
+                    </li>
+                    <li class="nav-item">
+                    <div class="mx-auto pull-right" >
+            <div class="search" style="float: right;
+    margin-top: -2rem;
+            ">
+                <form action="{{ url("search") }}" method="GET" role="search">
+
+                    <div class="input-group">
+                        <span class="input-group-btn mr-5 mt-1">
+                            <button class="btn btn-info" type="submit" title="Search projects" style="margin-left:200px">
+                                search
+                            </button>
+                        </span>
+                        <input type="text" class="form-control mr-2" name="term" placeholder="Search projects" id="term" style="width: 30px; float: right;
+                        margin-right: 100px">
+                    </div>
+                </form>
+            </div>
+        </div>
                     </li>
                   </ul>
                   <div class="others-options d-flex align-items-center">

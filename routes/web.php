@@ -7,6 +7,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\TourPlanController;
+use App\Http\Controllers\Select2SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/blogs',[BlogController::class, 'index']);
+Route::get('search',[Select2SearchController::class, 'selectSearch']);
 Route::get('/feed',[FeedController::class, 'index']);
 Route::get('blog/details/{id}',[BlogController::class, 'details']);
 Route::get('tour/plans',[TourController::class, 'index']);
@@ -44,19 +46,19 @@ Route::prefix('admin')->group(function(){
     Route::post('/login/owner',[AdminController::class, 'login']);
     Route::get('/dashboard',[AdminController::class, 'dashboard'])->middleware('admin');
     Route::get('/logout',[AdminController::class, 'logout'])->middleware('admin');
-    Route::get('/blog_list',[AdminController::class, 'get_blog_list']);
-    Route::get('/blogEdit/{id}',[BlogController::class, 'blogEdit']);
-    Route::post('/blog/update/{id}',[BlogController::class, 'blogUpdate']);
-    Route::get('/blog/delete/{id}',[BlogController::class, 'blogDelete']);
-    Route::get('/blog/status/{id}',[BlogController::class, 'blogStatus']);
-    Route::get('/blog/search',[BlogController::class, 'blogSearch']);
+    Route::get('/blog_list',[AdminController::class, 'get_blog_list'])->middleware('admin');
+    Route::get('/blogEdit/{id}',[BlogController::class, 'blogEdit'])->middleware('admin');
+    Route::post('/blog/update/{id}',[BlogController::class, 'blogUpdate'])->middleware('admin');
+    Route::get('/blog/delete/{id}',[BlogController::class, 'blogDelete'])->middleware('admin');
+    Route::get('/blog/status/{id}',[BlogController::class, 'blogStatus'])->middleware('admin');
+    Route::get('/blog/search',[BlogController::class, 'blogSearch'])->middleware('admin');
 
-    Route::get('/feed_list',[AdminController::class, 'get_feed_list']);
-    Route::get('/feedEdit/{id}',[FeedController::class, 'feedEdit']);
-    Route::post('/feed/update/{id}',[FeedController::class, 'feedUpdate']);
-    Route::get('/feed/delete/{id}',[FeedController::class, 'feedDelete']);
-    Route::get('/feed/status/{id}',[FeedController::class, 'feedStatus']);
-    Route::get('/feed/search',[FeedController::class, 'feedSearch']);
+    Route::get('/feed_list',[AdminController::class, 'get_feed_list'])->middleware('admin');
+    Route::get('/feedEdit/{id}',[FeedController::class, 'feedEdit'])->middleware('admin');
+    Route::post('/feed/update/{id}',[FeedController::class, 'feedUpdate'])->middleware('admin');
+    Route::get('/feed/delete/{id}',[FeedController::class, 'feedDelete'])->middleware('admin');
+    Route::get('/feed/status/{id}',[FeedController::class, 'feedStatus'])->middleware('admin');
+    Route::get('/feed/search',[FeedController::class, 'feedSearch'])->middleware('admin');
 
 
 

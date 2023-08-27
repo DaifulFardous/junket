@@ -46,7 +46,7 @@
                                 <h5>{{ $plan->capacity }}</h5>
                                 <h3>Booking Cost</h3>
                                 <h5>{{ $plan->booking_cost }}</h5>
-                                <a href="" class="mt-3 btn btn-success">Book Now</a>
+                                <a href="{{ url('book/plan/'.$plan->id) }}" class="mt-3 btn btn-success">Book Now</a>
                                 <div class="section_heading_center">
                                     <h2>Comments</h2>
                                 </div>

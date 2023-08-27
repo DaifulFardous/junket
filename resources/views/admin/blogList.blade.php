@@ -70,7 +70,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="{{ url("admin/blog_list") }}" id="blog_list"><i class="fa fa-dashboard fa-fw"></i> Blog Lists</a>
@@ -180,19 +180,7 @@
                 <div class="col-lg-12">
                     <h3 style="text-align: center">Blog Lists</h3>
                 </div>
-                <div class="container" style=".container {
-  padding: 2rem 0rem;
-}
-
-h4 {
-  margin: 2rem 0rem 1rem;
-}
-
-.table-image {
-  td, th {
-    vertical-align: middle;
-  }
-}">
+                <div class="container">
   <div class="row">
     <div class="col-12">
       <table class="table table-bordered">

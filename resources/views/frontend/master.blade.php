@@ -18,7 +18,10 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+   
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   </head>
 
   <body>
@@ -127,21 +130,16 @@
                     <div class="mx-auto pull-right" >
             <div class="search" style="float: right;
     margin-top: -2rem;
-            ">
-                <form action="{{ url("search") }}" method="GET" role="search">
+    margin-top: 8px;
 
-                    <div class="input-group">
-                        <span class="input-group-btn mr-5 mt-1">
-                            <button class="btn btn-info" type="submit" title="Search projects" style="margin-left:200px">
-                                search
-                            </button>
-                        </span>
-                        <input type="text" class="form-control mr-2" name="term" placeholder="Search projects" id="term" style="width: 30px; float: right;
-                        margin-right: 100px">
-                    </div>
-                </form>
-            </div>
-        </div>
+            ">
+                <form action="{{ url("/search") }}" method="post">
+    @csrf
+    <input type="text" name="search_query" id="search_query" placeholder="Search by location...">
+    <button type="submit">Search</button>
+</form>
+            
+</div>
                     </li>
                   </ul>
                   <div class="others-options d-flex align-items-center">
@@ -286,5 +284,18 @@
   <script src="{{ asset('frontend') }}/js/jquery.meanmenu.js"></script>
   <script src="{{ asset('frontend') }}/js/owl.carousel.min.js"></script>
   <script src="{{ asset('frontend') }}/js/custom.js"></script>
+  <script>
+    $(function() {
+        $("#search_query").autocomplete({
+            source: "{{ url('search/autocomplete') }}", // The route to fetch autocomplete suggestions
+            minLength: 2, // Minimum number of characters to trigger autocomplete
+            select: function(event, ui) {
+                // Set the selected value in the input field
+                $("#search_query").val(ui.item.value);
+                // You can also redirect to the search page if needed
+            }
+        });
+    });
+</script>
 </body>
 </html>

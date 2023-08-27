@@ -32,6 +32,7 @@ class TourPlanController extends Controller
         $plan->total_cost = $request->total_cost;
         $plan->booking_cost = $request->booking_cost;
         $plan->capacity = $request->capacity;
+        $plan->status = 'pending';
         $plan->save();
         return redirect()->back();
     }
@@ -61,6 +62,7 @@ class TourPlanController extends Controller
         $plan->total_cost = $request->total_cost;
         $plan->booking_cost = $request->booking_cost;
         $plan->capacity = $request->capacity;
+        $plan->status = 'pending';
         $plan->save();
         return redirect()->back();
     }

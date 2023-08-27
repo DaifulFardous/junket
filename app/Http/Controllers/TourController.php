@@ -11,11 +11,11 @@ use App\Models\UpcommingTourPlan;
 class TourController extends Controller
 {
     public function index(){
-        $runningplans = TourPlan::all();
+        $runningplans = TourPlan::where('status','=','active')->get();
       return view('frontend.tourPlans.tours',compact('runningplans'));
     }
     public function upcomming(){
-        $upcommingPlans = UpcommingTourPlan::all();
+        $upcommingPlans = UpcommingTourPlan::where('status','=','active')->get();
         return view('frontend.tourPlans.upcomming',compact('upcommingPlans'));
     }
     public function groups(){
@@ -34,4 +34,5 @@ class TourController extends Controller
         $plan = UpcommingTourPlan::find($id);
         return view('frontend.tourPlans.upcommingDetails',compact('plan','count','comments'));
     }
+
 }

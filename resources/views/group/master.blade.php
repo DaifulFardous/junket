@@ -111,6 +111,12 @@
                                 <li>
                                     <a href="{{ url("group/upcomming/plan/add") }}">Add Upcommimg Plan</a>
                                 </li>
+                                <li>
+                            <a href="{{ url("group/running_list") }}" id="tour_plan_list"><i class="fa fa-dashboard fa-fw"></i> Running Plan Lists</a>
+                        </li>
+                        <li>
+                            <a href="{{ url("group/upcoming_list") }}" id="tour_plan_list"><i class="fa fa-dashboard fa-fw"></i> Upcoming Plan Lists</a>
+                        </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

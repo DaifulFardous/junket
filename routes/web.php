@@ -8,7 +8,7 @@ use App\Http\Controllers\TourController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\TourPlanController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\Select2SearchController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +25,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/blogs',[BlogController::class, 'index']);
-Route::get('search',[Select2SearchController::class, 'selectSearch']);
+Route::post('/search', [SearchController::class, 'search']);
 Route::get('/feed',[FeedController::class, 'index']);
 Route::get('blog/details/{id}',[BlogController::class, 'details']);
 Route::get('tour/plans',[TourController::class, 'index']);
@@ -34,6 +34,7 @@ Route::get('feed/details/{id}',[FeedController::class, 'details']);
 Route::get('tour/groups',[TourController::class, 'groups']);
 Route::get('tours/details/{id}',[TourController::class, 'runningPlanDetails']);
 Route::get('upcomming/tours/details/{id}',[TourController::class, 'upcommingPlanDetails']);
+
 /*-----common_routes ends------*/
 
 Route::get('/dashboard', function () {
@@ -51,6 +52,7 @@ Route::prefix('admin')->group(function(){
     Route::post('/login/owner',[AdminController::class, 'login']);
     Route::get('/dashboard',[AdminController::class, 'dashboard'])->middleware('admin');
     Route::get('/logout',[AdminController::class, 'logout'])->middleware('admin');
+
     Route::get('/blog_list',[AdminController::class, 'get_blog_list'])->middleware('admin');
     Route::get('/blogEdit/{id}',[BlogController::class, 'blogEdit'])->middleware('admin');
     Route::post('/blog/update/{id}',[BlogController::class, 'blogUpdate'])->middleware('admin');
@@ -64,6 +66,20 @@ Route::prefix('admin')->group(function(){
     Route::get('/feed/delete/{id}',[FeedController::class, 'feedDelete'])->middleware('admin');
     Route::get('/feed/status/{id}',[FeedController::class, 'feedStatus'])->middleware('admin');
     Route::get('/feed/search',[FeedController::class, 'feedSearch'])->middleware('admin');
+
+    Route::get('/running_list',[AdminController::class, 'get_running_list'])->middleware('admin');
+    Route::get('/runningPlanEdit/{id}',[AdminController::class, 'runningPlanEdit'])->middleware('admin');
+    Route::post('/runningPlan/update/{id}',[AdminController::class, 'runningPlanUpdate'])->middleware('admin');
+    Route::get('/runningPlan/delete/{id}',[AdminController::class, 'runningPlanDelete'])->middleware('admin');
+    Route::get('/runningPlan/status/{id}',[AdminController::class, 'runningPlanStatus'])->middleware('admin');
+    Route::get('/runningPlan/search',[AdminController::class, 'runningPlanSearch'])->middleware('admin');
+
+    Route::get('/upcoming_list',[AdminController::class, 'get_upcoming_list'])->middleware('admin');
+    Route::get('/upcomingPlanEdit/{id}',[AdminController::class, 'upcomingPlanEdit'])->middleware('admin');
+    Route::post('/upcomingPlan/update/{id}',[AdminController::class, 'upcomingPlanUpdate'])->middleware('admin');
+    Route::get('/upcomingPlan/delete/{id}',[AdminController::class, 'upcomingPlanDelete'])->middleware('admin');
+    Route::get('/upcomingPlan/status/{id}',[AdminController::class, 'upcomingPlanStatus'])->middleware('admin');
+    Route::get('/upcomingPlan/search',[AdminController::class, 'upcomingPlanSearch'])->middleware('admin');
 
 
 
@@ -105,6 +121,23 @@ Route::prefix('group')->group(function(){
     Route::post('/running/plan/create',[TourPlanController::class, 'RunningPlanCreate'])->middleware('group');
     Route::get('/upcomming/plan/add',[TourPlanController::class, 'addUpcommingPlan'])->middleware('group');
     Route::post('/upcomming/plan/create',[TourPlanController::class, 'UpcommingPlanCreate'])->middleware('group');
+
+
+    Route::get('/running_list',[TourGroupController::class, 'get_running_list'])->middleware('group');
+    Route::get('/runningPlanEdit/{id}',[TourGroupController::class, 'runningPlanEdit'])->middleware('group');
+    Route::post('/runningPlan/update/{id}',[TourGroupController::class, 'runningPlanUpdate'])->middleware('group');
+    Route::get('/runningPlan/delete/{id}',[TourGroupController::class, 'runningPlanDelete'])->middleware('group');
+    Route::get('/runningPlan/status/{id}',[TourGroupController::class, 'runningPlanStatus'])->middleware('group');
+    Route::get('/runningPlan/search',[TourGroupController::class, 'runningPlanSearch'])->middleware('group');
+
+
+    Route::get('/upcoming_list',[TourGroupController::class, 'get_upcoming_list'])->middleware('group');
+    Route::get('/upcomingPlanEdit/{id}',[TourGroupController::class, 'upcomingPlanEdit'])->middleware('group');
+    Route::post('/upcomingPlan/update/{id}',[TourGroupController::class, 'upcomingPlanUpdate'])->middleware('group');
+    Route::get('/upcomingPlan/delete/{id}',[TourGroupController::class, 'upcomingPlanDelete'])->middleware('group');
+    Route::get('/upcomingPlan/status/{id}',[TourGroupController::class, 'upcomingPlanStatus'])->middleware('group');
+    Route::get('/upcomingPlan/search',[TourGroupController::class, 'upcomingPlanSearch'])->middleware('group');
+
 });
 
 /*----------TourGroup_routes_end----------*/

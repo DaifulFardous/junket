@@ -24,6 +24,7 @@ class CreateUpcommingTourPlansTable extends Migration
             $table->integer('total_cost');
             $table->integer('booking_cost');
             $table->integer('capacity');
+            $table->string('status');
             $table->timestamps();
         });
     }

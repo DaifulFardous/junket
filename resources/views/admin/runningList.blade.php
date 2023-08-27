@@ -19,6 +19,7 @@
     <!-- SB Admin CSS - Include with every page -->
     <link href="{{ asset('admin') }}/css/sb-admin.css" rel="stylesheet">
 
+
 </head>
 
 <body>
@@ -175,21 +176,105 @@
         <div id="page-wrapper">
             <div id="dataContainer">
                 <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12" >
                     <h1 class="page-header">Dashboard</h1>
+                    <div class="mx-auto pull-right" >
+            <div class="search" style="float: right;
+    margin-top: -2rem;
+            ">
+                <form action="{{ url("admin/runningPlan/search") }}" method="GET" role="search">
+
+                    <div class="input-group">
+                        <span class="input-group-btn mr-5 mt-1">
+                            <button class="btn btn-info" type="submit" title="Search projects" style="margin-left:1600px">
+                                search
+                            </button>
+                        </span>
+                        <input type="text" class="form-control mr-2" name="term" placeholder="Search projects" id="term" style="width: 150px; float: right;
+                        margin-right: 220px">
+                    </div>
+                </form>
+            </div>
+        </div>
                 </div>
+                <div>
+       
+    </div>
                 <!-- /.col-lg-12 -->
             </div>
+            
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 style="text-align: center">Welcome to Junket Admin Panel</h3>
+                    <h3 style="text-align: center">Running Plan Lists</h3>
                 </div>
+                <div class="container" style=".container {
+  padding: 2rem 0rem;
+}
+
+h4 {
+  margin: 2rem 0rem 1rem;
+}
+
+.table-image {
+  td, th {
+    vertical-align: middle;
+  }
+}">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Location</th>
+            <th scope="col">Short Description</th>
+            <th scope="col">image</th>
+            <th scope="col">Group Name</th>
+            <th scope="col">Cost Description</th>
+            <th scope="col">Total Cost</th>
+            <th scope="col">Booking Cost</th>
+            <th scope="col">Capacity</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach($runningPlans as $runningPlan)
+          <tr>
+            <th scope="row">{{ $runningPlan->location }}</th>
+            <td>{{ $runningPlan->short_description }}</td>
+            <td>{{ $runningPlan->image }}</td>
+            <td>{{ $runningPlan->group_name }}</td>
+            <td>{{ $runningPlan->cost_description }}</td>
+            <td>{{ $runningPlan->total_cost }}</td>
+            <td>{{ $runningPlan->booking_cost}}</td>
+            <td>{{ $runningPlan->capacity }}</td>
+            <td>{{ $runningPlan->status }}</td>
+            <td>
+              <button type="button" class="btn btn-primary" onclick="window.location.href='{{ url("admin/runningPlanEdit/$runningPlan->id") }}'">Edit</button>
+              <button type="button" class="btn btn-success" onclick="window.location.href='{{ url("group/runningPlan/delete/$runningPlan->id") }}'">Delete</button>
+              @guest
+                  @if ($runningPlan->status == 'pending')
+                    <button type="button" class="btn btn-danger" onclick="window.location.href='{{ url("admin/runningPlan/status/$runningPlan->id") }}'">Active</button>
+                  @endif
+                  @if ($runningPlan->status == 'active')
+                  <button type="button" class="btn btn-danger" onclick="window.location.href='{{ url("admin/runningPlan/status/$runningPlan->id") }}'">Pending</button>
+                  @endif
+              @endguest
+
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
             </div>
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper --></div>
-            
+
 
     </div>
     <!-- /#wrapper -->

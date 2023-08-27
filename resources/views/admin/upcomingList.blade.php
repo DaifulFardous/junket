@@ -19,6 +19,7 @@
     <!-- SB Admin CSS - Include with every page -->
     <link href="{{ asset('admin') }}/css/sb-admin.css" rel="stylesheet">
 
+
 </head>
 
 <body>
@@ -175,21 +176,105 @@
         <div id="page-wrapper">
             <div id="dataContainer">
                 <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12" >
                     <h1 class="page-header">Dashboard</h1>
+                    <div class="mx-auto pull-right" >
+            <div class="search" style="float: right;
+    margin-top: -2rem;
+            ">
+                <form action="{{ url("admin/upcomingPlan/search") }}" method="GET" role="search">
+
+                    <div class="input-group">
+                        <span class="input-group-btn mr-5 mt-1">
+                            <button class="btn btn-info" type="submit" title="Search projects" style="margin-left:1600px">
+                                search
+                            </button>
+                        </span>
+                        <input type="text" class="form-control mr-2" name="term" placeholder="Search projects" id="term" style="width: 150px; float: right;
+                        margin-right: 220px">
+                    </div>
+                </form>
+            </div>
+        </div>
                 </div>
+                <div>
+       
+    </div>
                 <!-- /.col-lg-12 -->
             </div>
+            
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 style="text-align: center">Welcome to Junket Admin Panel</h3>
+                    <h3 style="text-align: center">Upcoming Plan Lists</h3>
                 </div>
+                <div class="container" style=".container {
+  padding: 2rem 0rem;
+}
+
+h4 {
+  margin: 2rem 0rem 1rem;
+}
+
+.table-image {
+  td, th {
+    vertical-align: middle;
+  }
+}">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Location</th>
+            <th scope="col">Short Description</th>
+            <th scope="col">image</th>
+            <th scope="col">Group Name</th>
+            <th scope="col">Cost Description</th>
+            <th scope="col">Total Cost</th>
+            <th scope="col">Booking Cost</th>
+            <th scope="col">Capacity</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach($upcomingPlans as $upcomingPlan)
+          <tr>
+            <th scope="row">{{ $upcomingPlan->location }}</th>
+            <td>{{ $upcomingPlan->short_description }}</td>
+            <td>{{ $upcomingPlan->image }}</td>
+            <td>{{ $upcomingPlan->group_name }}</td>
+            <td>{{ $upcomingPlan->cost_description }}</td>
+            <td>{{ $upcomingPlan->total_cost }}</td>
+            <td>{{ $upcomingPlan->booking_cost}}</td>
+            <td>{{ $upcomingPlan->capacity }}</td>
+            <td>{{ $upcomingPlan->status }}</td>
+            <td>
+              <button type="button" class="btn btn-primary" onclick="window.location.href='{{ url("admin/upcomingPlanEdit/$upcomingPlan->id") }}'">Edit</button>
+              <button type="button" class="btn btn-success" onclick="window.location.href='{{ url("admin/upcomingPlan/delete/$upcomingPlan->id") }}'">Delete</button>
+              @guest
+                  @if ($upcomingPlan->status == 'pending')
+                    <button type="button" class="btn btn-danger" onclick="window.location.href='{{ url("admin/upcomingPlan/status/$upcomingPlan->id") }}'">Active</button>
+                  @endif
+                  @if ($upcomingPlan->status == 'active')
+                  <button type="button" class="btn btn-danger" onclick="window.location.href='{{ url("admin/upcomingPlan/status/$upcomingPlan->id") }}'">Pending</button>
+                  @endif
+              @endguest
+
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
             </div>
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper --></div>
-            
+
 
     </div>
     <!-- /#wrapper -->

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AJAX Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Data from Database</h1>
+    <div id="data-container"></div>
+
+    <script>
+        $(document).ready(function() {
+            // Make an AJAX request to the API endpoint
+            $.ajax({
+                url: 'api.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    // Loop through the response and display the data
+                    var html = '';
+                    response.forEach(function(item) {
+                        html += '<p>' + item.column_name + '</p>';
+                        // Replace 'column_name' with the actual column name from your database table
+                    });
+                    $('#data-container').html(html);
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

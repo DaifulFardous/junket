@@ -8,6 +8,7 @@ use App\Http\Controllers\TourController;
 use App\Http\Controllers\FeedController;
 use App\Http\Controllers\TourPlanController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\SearchController;
 
 /*
@@ -42,6 +43,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 Route::post('running/tour/comment/create',[CommentController::class,'runningCommentCreate'])->middleware(['auth']);
 Route::post('upcomming/tour/comment/create',[CommentController::class,'upcommingCommentCreate'])->middleware(['auth']);
+Route::get('book/plan/{id}',[BookingController::class,'checkout'])->middleware(['auth']);
+Route::post('booking/confirm',[BookingController::class,'booking'])->middleware(['auth']);
+Route::get('download/invoice/{id}',[BookingController::class,'invoice'])->middleware(['auth']);
 
 /*----------Admin_routes_start----------*/
 Route::prefix('admin')->group(function(){

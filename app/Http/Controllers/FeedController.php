@@ -76,6 +76,23 @@ class FeedController extends Controller{
         return redirect()->back();
     }
 
+    public function feedSearch(Request $request){
+        
+        $feeds = Feed::where([
+           ['heading', '!=', NULL],
+           [function ($query) use ($request){
+            if (($term = $request->term)){
+                $query->orWhere('heading','LIKE','%' . $term . '%')->get();
+            }
+           }] 
+        ])
+            ->orderBy("id", "desc")
+            ->paginate(10);
+
+            return view('admin.feedList', compact('feeds'));
+        
+    }
+
 }
 
 

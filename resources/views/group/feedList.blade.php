@@ -188,6 +188,24 @@ h4 {
   <div class="row">
     <div class="col-12">
     <h3 style="text-align: center">Feed Lists</h3>
+    <div class="mx-auto pull-right" >
+            <div class="search" style="float: right;
+    margin-top: -2rem;
+            ">
+                <form action="{{ url("group/feed/search") }}" method="GET" role="search">
+
+                    <div class="input-group">
+                        <span class="input-group-btn mr-5 mt-1">
+                            <button class="btn btn-info" type="submit" title="Search projects" style="margin-left:1800px">
+                                search
+                            </button>
+                        </span>
+                        <input type="text" class="form-control mr-2" name="term" placeholder="Search projects" id="term" style="width: 150px; float: right;
+                        margin-right: 100px">
+                    </div>
+                </form>
+            </div>
+        </div>
       <table class="table table-bordered">
         <thead>
           <tr>

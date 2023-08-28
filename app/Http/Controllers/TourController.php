@@ -17,11 +17,11 @@ class TourController extends Controller
         return view('welcome', compact('runningTours','upcommingTours','groups'));
     }
     public function index(){
-        $runningplans = TourPlan::all();
+        $runningplans = TourPlan::where('status','=','active')->get();
       return view('frontend.tourPlans.tours',compact('runningplans'));
     }
     public function upcomming(){
-        $upcommingPlans = UpcommingTourPlan::all();
+        $upcommingPlans = UpcommingTourPlan::where('status','=','active')->get();
         return view('frontend.tourPlans.upcomming',compact('upcommingPlans'));
     }
     public function groups(){

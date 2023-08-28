@@ -75,7 +75,13 @@
                             <a href="{{ url("admin/blog_list") }}" id="blog_list"><i class="fa fa-dashboard fa-fw"></i> Blog Lists</a>
                         </li>
                         <li>
-                            <a href="{{ url("admin/feed_list") }}" id="blog_list"><i class="fa fa-dashboard fa-fw"></i> Feed Lists</a>
+                            <a href="{{ url("admin/feed_list") }}" id="feed_list"><i class="fa fa-dashboard fa-fw"></i> Feed Lists</a>
+                        </li>
+                        <li>
+                            <a href="{{ url("admin/running_list") }}" id="tour_plan_list"><i class="fa fa-dashboard fa-fw"></i> Running Plan Lists</a>
+                        </li>
+                        <li>
+                            <a href="{{ url("admin/upcoming_list") }}" id="tour_plan_list"><i class="fa fa-dashboard fa-fw"></i> Upcoming Plan Lists</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>

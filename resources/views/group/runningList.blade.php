@@ -42,7 +42,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <span>{{ Auth::guard('admin')->user()->name }}</span>  <i class="fa fa-caret-down"></i>
+                        <span>{{ Auth::guard('group')->user()->name }}</span>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li class="divider"></li>
@@ -70,13 +70,19 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="{{ url('admin/dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="{{ url('group/dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="{{ url("admin/blog_list") }}" id="blog_list"><i class="fa fa-dashboard fa-fw"></i> Blog Lists</a>
+                            <a href="{{ url("group/blog_list") }}" id="blog_list"><i class="fa fa-dashboard fa-fw"></i> Blog Lists</a>
                         </li>
                         <li>
-                            <a href="{{ url("admin/feed_list") }}" id="feed_list"><i class="fa fa-dashboard fa-fw"></i> Feed Lists</a>
+                            <a href="{{ url("group/feed_list") }}" id="feed_list"><i class="fa fa-dashboard fa-fw"></i> Feed Lists</a>
+                        </li>
+                        <li>
+                            <a href="{{ url("group/running_list") }}" id="tour_plan_list"><i class="fa fa-dashboard fa-fw"></i> Running Plan Lists</a>
+                        </li>
+                        <li>
+                            <a href="{{ url("group/upcoming_list") }}" id="tour_plan_list"><i class="fa fa-dashboard fa-fw"></i> Upcoming Plan Lists</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -176,7 +182,7 @@
             <div class="search" style="float: right;
     margin-top: -2rem;
             ">
-                <form action="{{ url("admin/blog/search") }}" method="GET" role="search">
+                <form action="{{ url("group/runningPlan/search") }}" method="GET" role="search">
 
                     <div class="input-group">
                         <span class="input-group-btn mr-5 mt-1">
@@ -200,41 +206,53 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 style="text-align: center">Blog Lists</h3>
+                    <h3 style="text-align: center">Running Plan Lists</h3>
                 </div>
-                <div class="container">
+                <div class="container" style=".container {
+  padding: 2rem 0rem;
+}
+
+h4 {
+  margin: 2rem 0rem 1rem;
+}
+
+.table-image {
+  td, th {
+    vertical-align: middle;
+  }
+}">
   <div class="row">
     <div class="col-12">
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">Heading</th>
+            <th scope="col">Location</th>
             <th scope="col">Short Description</th>
             <th scope="col">image</th>
             <th scope="col">Group Name</th>
+            <th scope="col">Cost Description</th>
+            <th scope="col">Total Cost</th>
+            <th scope="col">Booking Cost</th>
+            <th scope="col">Capacity</th>
             <th scope="col">Status</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
-            @foreach($blogs as $blog)
+            @foreach($runningPlans as $runningPlan)
           <tr>
-            <th scope="row">{{ $blog->heading }}</th>
-            <td>{{ $blog->short_description }}</td>
-            <td>{{ $blog->image }}</td>
-            <td>{{ $blog->group_name }}</td>
-            <td>{{ $blog->status }}</td>
+            <th scope="row">{{ $runningPlan->location }}</th>
+            <td>{{ $runningPlan->short_description }}</td>
+            <td>{{ $runningPlan->image }}</td>
+            <td>{{ $runningPlan->group_name }}</td>
+            <td>{{ $runningPlan->cost_description }}</td>
+            <td>{{ $runningPlan->total_cost }}</td>
+            <td>{{ $runningPlan->booking_cost}}</td>
+            <td>{{ $runningPlan->capacity }}</td>
+            <td>{{ $runningPlan->status }}</td>
             <td>
-              <button type="button" class="btn btn-primary" onclick="window.location.href='{{ url("admin/blogEdit/$blog->id") }}'">Edit</button>
-              <button type="button" class="btn btn-success" onclick="window.location.href='{{ url("admin/blog/delete/$blog->id") }}'">Delete</button>
-              @guest
-                  @if ($blog->status == 'pending')
-                    <button type="button" class="btn btn-danger" onclick="window.location.href='{{ url("admin/blog/status/$blog->id") }}'">Active</button>
-                  @endif
-                  @if ($blog->status == 'active')
-                  <button type="button" class="btn btn-danger" onclick="window.location.href='{{ url("admin/blog/status/$blog->id") }}'">Pending</button>
-                  @endif
-              @endguest
+              <button type="button" class="btn btn-primary" onclick="window.location.href='{{ url("group/runningPlanEdit/$runningPlan->id") }}'">Edit</button>
+              <button type="button" class="btn btn-success" onclick="window.location.href='{{ url("group/runningPlan/delete/$runningPlan->id") }}'">Delete</button>
 
             </td>
           </tr>

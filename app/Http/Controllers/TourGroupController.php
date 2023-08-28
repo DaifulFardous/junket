@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\TourGroup;
+use App\Models\TourPlan ;
+use App\Models\UpcommingTourPlan ;
 use App\Models\Feed;
 use App\Models\Blog;
 use Illuminate\Http\Request;
@@ -113,5 +115,145 @@ class TourGroupController extends Controller
         $blog = Blog::find($id);
         $blog->delete();
         return redirect('group/blog/list/'.$blog->group_name);
+    }
+    public function blogSearch(Request $request){
+        
+        $blogs = Blog::where([
+           ['heading', '!=', NULL],
+           [function ($query) use ($request){
+            if (($term = $request->term)){
+                $query->orWhere('heading','LIKE','%' . $term . '%')->get();
+            }
+           }] 
+        ])
+            ->orderBy("id", "desc")
+            ->paginate(10);
+
+            return view('group.blogList', compact('blogs'));
+        
+    }
+    public function feedSearch(Request $request){
+        
+        $feeds = Feed::where([
+           ['heading', '!=', NULL],
+           [function ($query) use ($request){
+            if (($term = $request->term)){
+                $query->orWhere('heading','LIKE','%' . $term . '%')->get();
+            }
+           }] 
+        ])
+            ->orderBy("id", "desc")
+            ->paginate(10);
+
+            return view('group.feedList', compact('feeds'));
+        
+    }
+
+
+    public function get_running_list(){
+        $runningPlans = TourPlan::all();
+        return view('group.runningList', compact('runningPlans')) ;
+    }
+    public function runningPlanEdit($id){
+        $runningPlan = TourPlan::findOrFail($id);
+        return view('group.runningEdit', compact('runningPlan'));
+    }
+    public function runningPlanUpdate(Request $request, $id){
+        $plan = TourPlan::findOrFail($id);
+        if($request->hasFile('image'))
+        {
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $fileName = time().'.'.$ext;
+            $file->move('assets/uploads/runningTours',$fileName);
+            $plan->image = $fileName;
+        }
+        $plan->group_name = Auth::guard('group')->user()->group_name;
+        $plan->location = $request->location;
+        $plan->short_description = $request->short_description;
+        $plan->long_description = $request->long_description;
+        $plan->cost_description = $request->cost_description;
+        $plan->total_cost = $request->total_cost;
+        $plan->booking_cost = $request->booking_cost;
+        $plan->capacity = $request->capacity;
+        $plan->status = 'pending';
+        $plan->save();
+        return redirect('group/running_list');
+    }
+    public function runningPlanDelete($id){
+        $plan = TourPlan::find($id);
+        $plan->delete();
+        return redirect('group/running_list');
+    }
+
+    public function runningPlanSearch(Request $request){
+        
+        $runningPlans = TourPlan::where([
+           ['location', '!=', NULL],
+           [function ($query) use ($request){
+            if (($term = $request->term)){
+                $query->orWhere('location','LIKE','%' . $term . '%')->get();
+            }
+           }] 
+        ])
+            ->orderBy("id", "desc")
+            ->paginate(10);
+
+            return view('group.runninglist', compact('runningPlans'));
+        
+    }
+
+
+    public function get_upcoming_list(){
+        $upcomingPlans = UpcommingTourPlan::all();
+        return view('group.upcomingList', compact('upcomingPlans')) ;
+    }
+
+    public function upcomingPlanEdit($id){
+        $upcomingPlan = UpcommingTourPlan::findOrFail($id);
+        return view('group.upcomingEdit', compact('upcomingPlan'));
+    }
+    public function upcomingPlanUpdate(Request $request, $id){
+        $plan = UpcommingTourPlan::findOrFail($id);
+        if($request->hasFile('image'))
+        {
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $fileName = time().'.'.$ext;
+            $file->move('assets/uploads/upcommingTours',$fileName);
+            $plan->image = $fileName;
+        }
+        $plan->group_name = Auth::guard('group')->user()->group_name;
+        $plan->location = $request->location;
+        $plan->short_description = $request->short_description;
+        $plan->long_description = $request->long_description;
+        $plan->cost_description = $request->cost_description;
+        $plan->total_cost = $request->total_cost;
+        $plan->booking_cost = $request->booking_cost;
+        $plan->capacity = $request->capacity;
+        $plan->status = 'pending';
+        $plan->save();
+        return redirect('group/upcoming_list');
+    }
+    public function upcomingPlanDelete($id){
+        $plan = UpcomingTourPlan::find($id);
+        $plan->delete();
+        return redirect('group/upcoming_list');
+    }
+    public function upcomingPlanSearch(Request $request){
+        
+        $upcomingPlans = UpcommingTourPlan::where([
+           ['location', '!=', NULL],
+           [function ($query) use ($request){
+            if (($term = $request->term)){
+                $query->orWhere('location','LIKE','%' . $term . '%')->get();
+            }
+           }] 
+        ])
+            ->orderBy("id", "desc")
+            ->paginate(10);
+
+            return view('group.upcominglist', compact('upcomingPlans'));
+        
     }
 }

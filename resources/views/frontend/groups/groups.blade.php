@@ -26,7 +26,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                         <div class="news_four_card">
                             <div class="news_four_card_img">
-                                <a href="news-details.html">
+                                <a href="{{ url('group/details/'.$group->id) }}">
                                     <img src="{{ asset('assets/uploads/groups/'.$group->image) }}" style="height: 240px; width: 460px" alt="img">
                                 </a>
                             </div>
@@ -36,8 +36,8 @@
                                 </ul>
                             </div>
                             <div class="news_four_card_conrent">
-                                <h3><a href="news-details.html"> {{ $group->group_name }}</a></h3>
-                                <a href="">Read details...</a>
+                                <h3><a href="{{ url('group/details/'.$group->id) }}"> {{ $group->group_name }}</a></h3>
+                                <a href="{{ url('group/details/'.$group->id) }}">Read details...</a>
                             </div>
                         </div>
                     </div>

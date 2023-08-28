@@ -10,6 +10,12 @@ use App\Models\UpcommingTourPlan;
 
 class TourController extends Controller
 {
+    public function welcome(){
+        $runningTours = TourPlan::all();
+        $upcommingTours = UpcommingTourPlan::all();
+        $groups = TourGroup::all();
+        return view('welcome', compact('runningTours','upcommingTours','groups'));
+    }
     public function index(){
         $runningplans = TourPlan::all();
       return view('frontend.tourPlans.tours',compact('runningplans'));
@@ -33,5 +39,9 @@ class TourController extends Controller
         $comments = Comment::where('tour_type','Upcomming')->where('plan_id',$id)->get();
         $plan = UpcommingTourPlan::find($id);
         return view('frontend.tourPlans.upcommingDetails',compact('plan','count','comments'));
+    }
+    public function groupDetails($id){
+        $group = TourGroup::find($id);
+        return view('frontend.groups.details', compact('group'));
     }
 }

@@ -21,9 +21,10 @@ use App\Http\Controllers\BookingController;
 |
 */
 /*-----common_routes------*/
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/',[TourController::class, 'welcome']);
 Route::get('/blogs',[BlogController::class, 'index']);
 Route::get('/feed',[FeedController::class, 'index']);
 Route::get('blog/details/{id}',[BlogController::class, 'details']);
@@ -33,6 +34,8 @@ Route::get('feed/details/{id}',[FeedController::class, 'details']);
 Route::get('tour/groups',[TourController::class, 'groups']);
 Route::get('tours/details/{id}',[TourController::class, 'runningPlanDetails']);
 Route::get('upcomming/tours/details/{id}',[TourController::class, 'upcommingPlanDetails']);
+Route::get('upcomming/tours/details/{id}',[TourController::class, 'upcommingPlanDetails']);
+Route::get('group/details/{id}',[TourController::class, 'groupDetails']);
 /*-----common_routes ends------*/
 
 Route::get('/dashboard', function () {

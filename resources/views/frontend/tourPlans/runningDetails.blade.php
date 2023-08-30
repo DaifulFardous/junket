@@ -43,7 +43,7 @@
                                 <h3>Total Cost</h3>
                                 <h5>{{ $plan->total_cost }}</h5>
                                 <h3>Capacity</h3>
-                                <h5>{{ $plan->capacity }}</h5>
+                                <h5>{{ $plan->capacity - $capacityCount }}</h5>
                                 <h3>Booking Cost</h3>
                                 <h5>{{ $plan->booking_cost }}</h5>
                                 <a href="{{ url('book/plan/'.$plan->id) }}" class="mt-3 btn btn-success">Book Now</a>
@@ -65,7 +65,8 @@
                                 </div>
                                 <h3>Leave a comment</h3>
                                 <div class="contact_form">
-                                    <form action="{{ url('running/tour/comment/create') }}" method="post">
+                                    {{-- action="{{ url('running/tour/comment/create') }}" --}}
+                                    <form id="commentForm">
                                         @csrf
                                         <div class="col-lg-12">
                                             <div class="form-group">
@@ -76,7 +77,7 @@
                                         </div>
                                         <div class="mt-3 col-lg-12">
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn_theme btn_md">Post Comment</button>
+                                                <button type="submit" class="btn btn-success" id="commentSubmit">Post Comment</button>
                                             </div>
                                         </div>
                                     </form>

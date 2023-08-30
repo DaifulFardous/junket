@@ -13,8 +13,8 @@ class CommentController extends Controller
         $comment = new Comment();
         $comment->tour_type = 'Running';
         $comment->user_id = auth()->user()->id;
-        $comment->plan_id = $request->plan_id;
-        $comment->comment = $request->comment;
+        $comment->plan_id = $request->post('plan_id');
+        $comment->comment = $request->post('comment');
         $comment->save();
         return redirect()->back();
     }

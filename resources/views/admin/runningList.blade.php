@@ -198,11 +198,11 @@
         </div>
                 </div>
                 <div>
-       
+
     </div>
                 <!-- /.col-lg-12 -->
             </div>
-            
+
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
@@ -252,7 +252,7 @@ h4 {
             <td>{{ $runningPlan->status }}</td>
             <td>
               <button type="button" class="btn btn-primary" onclick="window.location.href='{{ url("admin/runningPlanEdit/$runningPlan->id") }}'">Edit</button>
-              <button type="button" class="btn btn-success" onclick="window.location.href='{{ url("group/runningPlan/delete/$runningPlan->id") }}'">Delete</button>
+              <button type="button" class="btn btn-success" onclick="window.location.href='{{ url("admin/runningPlan/delete/$runningPlan->id") }}'">Delete</button>
               @guest
                   @if ($runningPlan->status == 'pending')
                     <button type="button" class="btn btn-danger" onclick="window.location.href='{{ url("admin/runningPlan/status/$runningPlan->id") }}'">Active</button>

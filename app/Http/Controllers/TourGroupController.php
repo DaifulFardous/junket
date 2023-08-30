@@ -117,36 +117,36 @@ class TourGroupController extends Controller
         return redirect('group/blog/list/'.$blog->group_name);
     }
     public function blogSearch(Request $request){
-        
+
         $blogs = Blog::where([
            ['heading', '!=', NULL],
            [function ($query) use ($request){
             if (($term = $request->term)){
                 $query->orWhere('heading','LIKE','%' . $term . '%')->get();
             }
-           }] 
+           }]
         ])
             ->orderBy("id", "desc")
             ->paginate(10);
 
             return view('group.blogList', compact('blogs'));
-        
+
     }
     public function feedSearch(Request $request){
-        
+
         $feeds = Feed::where([
            ['heading', '!=', NULL],
            [function ($query) use ($request){
             if (($term = $request->term)){
                 $query->orWhere('heading','LIKE','%' . $term . '%')->get();
             }
-           }] 
+           }]
         ])
             ->orderBy("id", "desc")
             ->paginate(10);
 
             return view('group.feedList', compact('feeds'));
-        
+
     }
 
 
@@ -187,20 +187,20 @@ class TourGroupController extends Controller
     }
 
     public function runningPlanSearch(Request $request){
-        
+
         $runningPlans = TourPlan::where([
            ['location', '!=', NULL],
            [function ($query) use ($request){
             if (($term = $request->term)){
                 $query->orWhere('location','LIKE','%' . $term . '%')->get();
             }
-           }] 
+           }]
         ])
             ->orderBy("id", "desc")
             ->paginate(10);
 
             return view('group.runninglist', compact('runningPlans'));
-        
+
     }
 
 
@@ -236,24 +236,24 @@ class TourGroupController extends Controller
         return redirect('group/upcoming_list');
     }
     public function upcomingPlanDelete($id){
-        $plan = UpcomingTourPlan::find($id);
+        $plan = UpcommingTourPlan::find($id);
         $plan->delete();
         return redirect('group/upcoming_list');
     }
     public function upcomingPlanSearch(Request $request){
-        
+
         $upcomingPlans = UpcommingTourPlan::where([
            ['location', '!=', NULL],
            [function ($query) use ($request){
             if (($term = $request->term)){
                 $query->orWhere('location','LIKE','%' . $term . '%')->get();
             }
-           }] 
+           }]
         ])
             ->orderBy("id", "desc")
             ->paginate(10);
 
             return view('group.upcominglist', compact('upcomingPlans'));
-        
+
     }
 }

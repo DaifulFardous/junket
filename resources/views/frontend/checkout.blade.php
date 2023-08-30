@@ -114,7 +114,7 @@
                                                 </span>
                                             </label>
                                         </div>
-                                        <button type="submit" class="btn btn_theme btn_md mt-4">Confirm Booking</button>
+                                        <button type="submit" class="btn btn-succsess mt-4">Confirm Booking</button>
                                     </div>
                                 </div>
                             </form>

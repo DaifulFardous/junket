@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-   
+
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -68,6 +68,18 @@
                             </form>
                         </li>
                 @endguest
+                <li>       <div class="search" style="float: right;
+                    margin-top: -2rem;
+                    margin-top: 8px;
+
+                     ">
+                <form action="{{ url("/search") }}" method="post">
+                 @csrf
+                <input type="text" name="search_query" id="search_query" style="border-radius: 10px;" placeholder="Search by location...">
+                 <button type="submit" class="btn btn-success btn-sm">Search</button>
+            </form>
+
+</div></li>
               </ul>
             </div>
           </div>
@@ -128,18 +140,6 @@
                     </li>
                     <li class="nav-item">
                     <div class="mx-auto pull-right" >
-            <div class="search" style="float: right;
-    margin-top: -2rem;
-    margin-top: 8px;
-
-            ">
-                <form action="{{ url("/search") }}" method="post">
-    @csrf
-    <input type="text" name="search_query" id="search_query" placeholder="Search by location...">
-    <button type="submit">Search</button>
-</form>
-            
-</div>
                     </li>
                   </ul>
                   <div class="others-options d-flex align-items-center">
@@ -296,6 +296,20 @@
             }
         });
     });
+</script>
+<script>
+  jQuery('#commentForm').submit(function (e){
+    e.preventDefault();
+    jQuery.ajax({
+        url:"{{ url('running/tour/comment/create') }}",
+        data:  jQuery('#commentForm').serialize(),
+        type:'post',
+        success:function(result){
+            readData();
+        }
+
+    });
+  });
 </script>
 </body>
 </html>

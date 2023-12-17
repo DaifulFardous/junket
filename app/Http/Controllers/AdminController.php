@@ -10,6 +10,7 @@ use App\Models\UpcommingTourPlan ;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class AdminController extends Controller
 {
@@ -20,6 +21,10 @@ class AdminController extends Controller
         return view('admin.index');
     }
     public function login(Request $request){
+        $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required'],
+        ]);
         $check = $request->all();
         if(Auth::guard('admin')->attempt(['email' => $check['email'], 'password' => $check['password']])){
             return redirect('admin/dashboard')->with('message','Admin login successfully');
@@ -35,6 +40,11 @@ class AdminController extends Controller
         return view('admin.register');
     }
     public function registerCreate(Request $request){
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
        Admin::insert([
         'name' => $request->name,
         'email' => $request->email,
@@ -98,20 +108,20 @@ class AdminController extends Controller
         return redirect()->back();
     }
     public function runningPlanSearch(Request $request){
-        
+
         $runningPlans = TourPlan::where([
            ['location', '!=', NULL],
            [function ($query) use ($request){
             if (($term = $request->term)){
                 $query->orWhere('location','LIKE','%' . $term . '%')->get();
             }
-           }] 
+           }]
         ])
             ->orderBy("id", "desc")
             ->paginate(10);
 
             return view('admin.runninglist', compact('runningPlans'));
-        
+
     }
 
 
@@ -147,24 +157,34 @@ class AdminController extends Controller
         return redirect('admin/upcoming_list');
     }
     public function upcomingPlanDelete($id){
-        $plan = UpcomingTourPlan::find($id);
+        $plan = UpcommingTourPlan::find($id);
         $plan->delete();
         return redirect('admin/upcoming_list');
     }
+    public function upcomingPlanStatus($id){
+        $plan = UpcommingTourPlan::find($id);
+        if($plan->status == 'pending'){
+            $plan->status = 'active';
+        }else{
+            $plan->status = 'pending';
+        }
+        $plan->update();
+        return redirect()->back();
+    }
     public function upcomingPlanSearch(Request $request){
-        
+
         $upcomingPlans = UpcommingTourPlan::where([
            ['location', '!=', NULL],
            [function ($query) use ($request){
             if (($term = $request->term)){
                 $query->orWhere('location','LIKE','%' . $term . '%')->get();
             }
-           }] 
+           }]
         ])
             ->orderBy("id", "desc")
             ->paginate(10);
 
             return view('admin.upcominglist', compact('upcomingPlans'));
-        
+
     }
 }

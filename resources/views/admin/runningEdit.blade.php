@@ -1,8 +1,13 @@
-@extends('group.master')
-@section('header')
-Edit Running Plan
-@endsection
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>plan edit</title>
+</head>
+<body>
+    <h1>Plan Edit</h1>
+    <div class="col-md-3"></div>
 <div class="col-md-6">
     <form action="{{ url('admin/runningPlan/update/'.$runningPlan->id) }}" method="post" enctype="multipart/form-data">
         @csrf
@@ -45,4 +50,5 @@ Edit Running Plan
 <div class="col-md-3"></div>
 
 
-@endsection
+</body>
+</html>

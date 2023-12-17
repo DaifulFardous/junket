@@ -17,6 +17,14 @@ class FeedController extends Controller{
         return view('group.addFeed');
     }
     public function create(Request $request){
+        $request->validate([
+            'image' => ['required'],
+            'group_name' => ['required'],
+            'heading' => ['required'],
+            'short_description' => ['required'],
+            'long_description' => ['required'],
+            'status' => ['required'],
+        ]);
         $feed = new Feed();
         if($request->hasFile('image'))
         {
@@ -43,7 +51,15 @@ class FeedController extends Controller{
         return view('admin.feedEdit', compact('feed'));
     }
     public function feedUpdate(Request $request,$id){
-    
+        $request->validate([
+            'image' => ['required'],
+            'group_name' => ['required'],
+            'heading' => ['required'],
+            'short_description' => ['required'],
+            'long_description' => ['required'],
+            'status' => ['required'],
+        ]);
+
         $feed = Feed::findOrFail($id);
         if($request->hasFile('image'))
         {
@@ -77,20 +93,20 @@ class FeedController extends Controller{
     }
 
     public function feedSearch(Request $request){
-        
+
         $feeds = Feed::where([
            ['heading', '!=', NULL],
            [function ($query) use ($request){
             if (($term = $request->term)){
                 $query->orWhere('heading','LIKE','%' . $term . '%')->get();
             }
-           }] 
+           }]
         ])
             ->orderBy("id", "desc")
             ->paginate(10);
 
             return view('admin.feedList', compact('feeds'));
-        
+
     }
 
 }

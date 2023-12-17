@@ -134,6 +134,15 @@
                 placeholder="Confirm Password:"
               />
             </div>
+            <div class="m-t-5">
+                {!! NoCaptcha::renderJs() !!}
+                {!! NoCaptcha::display() !!}
+            </div>
+            @foreach($errors->all() as $error)
+            <div class="alert alert-danger m-t-5" role="alert">
+                <li>{{ $error }}</li>
+            </div>
+            @endforeach
             <div class="container-login100-form-btn" style="margin-top: 10px">
               <div class="wrap-login100-form-btn">
                 <div class="login100-form-bgbtn"></div>

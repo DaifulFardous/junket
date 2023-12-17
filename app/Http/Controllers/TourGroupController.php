@@ -10,6 +10,8 @@ use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules;
+
 
 class TourGroupController extends Controller
 {
@@ -20,6 +22,16 @@ class TourGroupController extends Controller
         return view('group.register');
     }
     public function registerCreate(Request $request){
+        $request->validate([
+            'image' => ['required'],
+            'group_name' => ['required'],
+            'owner_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'string', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'location' => ['required'],
+            'about_us' => ['required'],
+        ]);
         $group = new TourGroup();
         if($request->hasFile('image'))
         {
@@ -40,6 +52,10 @@ class TourGroupController extends Controller
         return redirect('group/login')->with('message','Account created successfylly!');
     }
     public function login(Request $request){
+        $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required'],
+        ]);
         $check = $request->all();
         if(Auth::guard('group')->attempt(['email' => $check['email'], 'password' => $check['password']])){
             return redirect('group/dashboard')->with('message','Login successfully');

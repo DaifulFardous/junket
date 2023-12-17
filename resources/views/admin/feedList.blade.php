@@ -166,14 +166,13 @@ h4 {
             <td>
               <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='{{ url("admin/feedEdit/$feed->id") }}'">Edit</button>
               <button type="button" class="btn btn-success btn-sm" onclick="window.location.href='{{ url("admin/feed/delete/$feed->id") }}'">Delete</button>
-            @guest
+
             @if ($feed->status == 'pending')
               <button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='{{ url("admin/feed/status/$feed->id") }}'">Active</button>
             @endif
             @if ($feed->status == 'active')
             <button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='{{ url("admin/feed/status/$feed->id") }}'">Pending</button>
             @endif
-        @endguest
             </td>
           </tr>
           @endforeach

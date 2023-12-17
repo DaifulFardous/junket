@@ -73,11 +73,6 @@
                     margin-top: 8px;
 
                      ">
-                <form action="{{ url("/search") }}" method="post">
-                 @csrf
-                <input type="text" name="search_query" id="search_query" style="border-radius: 10px;" placeholder="Search by location...">
-                 <button type="submit" class="btn btn-success btn-sm">Search</button>
-            </form>
 
 </div></li>
               </ul>

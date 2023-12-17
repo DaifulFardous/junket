@@ -95,6 +95,9 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li>
+                            <a href="{{ url("log-viewer?file=d2d5d1a9-laravel.log") }}" id="tour_plan_list"><i class="fa fa-dashboard fa-fw"></i>View Log</a>
+                        </li>
                     </ul>
                     <!-- /#side-menu -->
                 </div>

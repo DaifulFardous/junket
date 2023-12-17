@@ -227,14 +227,14 @@
             <td>
               <button type="button" class="btn btn-primary btn-sm" onclick="window.location.href='{{ url("admin/blogEdit/$blog->id") }}'">Edit</button>
               <button type="button" class="btn btn-success" onclick="window.location.href='{{ url("admin/blog/delete/$blog->id") }}'">Delete</button>
-              @guest
+
                   @if ($blog->status == 'pending')
                     <button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='{{ url("admin/blog/status/$blog->id") }}'">Active</button>
                   @endif
                   @if ($blog->status == 'active')
                   <button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='{{ url("admin/blog/status/$blog->id") }}'">Pending</button>
                   @endif
-              @endguest
+
 
             </td>
           </tr>

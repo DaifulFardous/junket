@@ -16,6 +16,14 @@ class BlogController extends Controller
         return view('group.addBlog');
     }
     public function create(Request $request){
+        $request->validate([
+            'image' => ['required'],
+            'group_name' => ['required'],
+            'heading' => ['required'],
+            'short_description' => ['required'],
+            'long_description' => ['required'],
+            'status' => ['required'],
+        ]);
         $blog = new Blog();
         if($request->hasFile('image'))
         {
@@ -38,12 +46,20 @@ class BlogController extends Controller
         return view('frontend.blogs.details', compact('blog'));
     }
     public function blogEdit($id){
-    
+
         $blog = Blog::findOrFail($id);
         return view('admin.blogEdit', compact('blog'));
     }
     public function blogUpdate(Request $request,$id){
-    
+        $request->validate([
+            'image' => ['required'],
+            'group_name' => ['required'],
+            'heading' => ['required'],
+            'short_description' => ['required'],
+            'long_description' => ['required'],
+            'status' => ['required'],
+        ]);
+
         $blog = Blog::findOrFail($id);
         if($request->hasFile('image'))
         {
@@ -65,7 +81,7 @@ class BlogController extends Controller
         $blog->delete();
         return redirect('admin/blog_list');
     }
-    
+
     public function blogStatus($id){
         $blog = Blog::find($id);
         if($blog->status == 'pending'){
@@ -77,20 +93,20 @@ class BlogController extends Controller
         return redirect()->back();
     }
     public function blogSearch(Request $request){
-        
+
         $blogs = Blog::where([
            ['heading', '!=', NULL],
            [function ($query) use ($request){
             if (($term = $request->term)){
                 $query->orWhere('heading','LIKE','%' . $term . '%')->get();
             }
-           }] 
+           }]
         ])
             ->orderBy("id", "desc")
             ->paginate(10);
 
             return view('admin.blogList', compact('blogs'));
-        
+
     }
 
 }

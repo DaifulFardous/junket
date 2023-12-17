@@ -55,12 +55,12 @@
             @foreach ($runningTours as $tour)
             <div class="theme_common_box_two img_hover">
                 <div class="theme_two_box_img">
-                  <a href="hotel-details.html"
+                  <a href="{{ url('tours/details/'.$tour->id) }}"
                     ><img src="{{ asset('assets/uploads/runningTours/'.$tour->image) }}" style="height: 242px; width: 430px" alt="img"
                   /></a>
                 </div>
                 <div class="theme_two_box_content">
-                  <h4><a href="hotel-details.html">{{ $tour->location }}</a></h4>
+                  <h4><a href="{{ url('tours/details/'.$tour->id) }}">{{ $tour->location }}</a></h4>
                   <h3>Tk {{ $tour->total_cost }} <span>Total cost</span></h3>
                 </div>
               </div>
@@ -87,12 +87,12 @@
             @foreach ($upcommingTours as $tour)
             <div class="theme_common_box_two img_hover">
                 <div class="theme_two_box_img">
-                  <a href="hotel-details.html"
+                  <a href="{{ url('upcomming/tours/details/'.$tour->id) }}"
                     ><img src="{{ asset('assets/uploads/upcommingTours/'.$tour->image) }}" style="height: 242px; width: 430px" alt="img"
                   /></a>
                 </div>
                 <div class="theme_two_box_content">
-                  <h4><a href="hotel-details.html">{{ $tour->location }}</a></h4>
+                  <h4><a href="{{ url('upcomming/tours/details/'.$tour->id) }}">{{ $tour->location }}</a></h4>
                   <h3>Tk {{ $tour->total_cost }} <span>Total cost</span></h3>
                 </div>
               </div>
@@ -119,12 +119,12 @@
             @foreach ($groups as $group)
             <div class="theme_common_box_two img_hover">
                 <div class="theme_two_box_img">
-                  <a href="hotel-details.html"
+                  <a href="{{ url('group/details/'.$group->id) }}"
                     ><img src="{{ asset('assets/uploads/groups/'.$group->image) }}" style="height: 242px; width: 430px" alt="img"
                   /></a>
                 </div>
                 <div class="theme_two_box_content">
-                  <h4><a href="hotel-details.html">{{ $group->group_name }}</a></h4>
+                  <h4><a href="{{ url('group/details/'.$group->id) }}">{{ $group->group_name }}</a></h4>
                   <h3>Owner name: {{ $group->owner_name }}</h3>
                 </div>
               </div>

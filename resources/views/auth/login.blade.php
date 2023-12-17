@@ -51,10 +51,18 @@
                 placeholder="Password:"
               />
             </div>
-            <div class="text-right p-t-8 p-b-31">
-              <a href="#"> Forgot password? </a>
+            <div class="m-t-5">
+                {!! NoCaptcha::renderJs() !!}
+                {!! NoCaptcha::display() !!}
             </div>
-
+            <div class="text-right p-t-8 p-b-31">
+              <a href="{{ url('forgot-password') }}"> Forgot password? </a>
+            </div>
+                @foreach($errors->all() as $error)
+                    <div class="alert alert-danger" role="alert">
+                        <li>{{ $error }}</li>
+                    </div>
+                @endforeach
             <div class="container-login100-form-btn">
               <div class="wrap-login100-form-btn">
                 <div class="login100-form-bgbtn"></div>

@@ -14,6 +14,15 @@ class BookingController extends Controller
         return view('frontend.checkout', compact('tour'));
     }
     public function booking(Request $request){
+        $request->validate([
+            'tour_id' => ['required'],
+            'name' => ['required'],
+            'email' => ['required'],
+            'phone' => ['required'],
+            'street' => ['required'],
+            'house' => ['required'],
+            'payment' => ['required'],
+        ]);
         $booking = new Booking();
         $booking->tour_id = $request->tour_id;
         $booking->name = $request->name;

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\TourGroupController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TourController;
@@ -10,6 +11,8 @@ use App\Http\Controllers\TourPlanController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\CustomPasswordResetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,19 +39,20 @@ Route::get('feed/details/{id}',[FeedController::class, 'details']);
 Route::get('tour/groups',[TourController::class, 'groups']);
 Route::get('tours/details/{id}',[TourController::class, 'runningPlanDetails']);
 Route::get('upcomming/tours/details/{id}',[TourController::class, 'upcommingPlanDetails']);
-Route::get('upcomming/tours/details/{id}',[TourController::class, 'upcommingPlanDetails']);
+//Route::get('upcomming/tours/details/{id}',[TourController::class, 'upcommingPlanDetails']);
 Route::get('group/details/{id}',[TourController::class, 'groupDetails']);
 
-/*-----common_routes ends------*/
 
+
+/*-----common_routes ends------*/
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-Route::post('running/tour/comment/create',[CommentController::class,'runningCommentCreate'])->middleware(['auth']);
-Route::post('upcomming/tour/comment/create',[CommentController::class,'upcommingCommentCreate'])->middleware(['auth']);
-Route::get('book/plan/{id}',[BookingController::class,'checkout'])->middleware(['auth']);
-Route::post('booking/confirm',[BookingController::class,'booking'])->middleware(['auth']);
-Route::get('download/invoice/{id}',[BookingController::class,'invoice'])->middleware(['auth']);
+})->middleware(['auth','verified'])->name('dashboard');
+Route::post('running/tour/comment/create',[CommentController::class,'runningCommentCreate'])->middleware(['auth','verified']);
+Route::post('upcomming/tour/comment/create',[CommentController::class,'upcommingCommentCreate'])->middleware(['auth','verified']);
+Route::get('book/plan/{id}',[BookingController::class,'checkout'])->middleware(['auth','verified']);
+Route::post('booking/confirm',[BookingController::class,'booking'])->middleware(['auth','verified']);
+Route::get('download/invoice/{id}',[BookingController::class,'invoice'])->middleware(['auth','verified']);
 
 /*----------Admin_routes_start----------*/
 Route::prefix('admin')->group(function(){
@@ -87,14 +91,9 @@ Route::prefix('admin')->group(function(){
     Route::get('/upcomingPlan/delete/{id}',[AdminController::class, 'upcomingPlanDelete'])->middleware('admin');
     Route::get('/upcomingPlan/status/{id}',[AdminController::class, 'upcomingPlanStatus'])->middleware('admin');
     Route::get('/upcomingPlan/search',[AdminController::class, 'upcomingPlanSearch'])->middleware('admin');
-
-
-
-
 });
 
 /*----------Admin_routes_end----------*/
-
 /*----------TourGroup_routes_start----------*/
 Route::prefix('group')->group(function(){
     Route::get('/login',[TourGroupController::class, 'index']);
@@ -146,7 +145,5 @@ Route::prefix('group')->group(function(){
     Route::get('/upcomingPlan/search',[TourGroupController::class, 'upcomingPlanSearch'])->middleware('group');
 
 });
-
 /*----------TourGroup_routes_end----------*/
-
 require __DIR__.'/auth.php';

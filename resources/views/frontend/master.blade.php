@@ -15,6 +15,13 @@
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style.css" />
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/responsive.css" />
     <link rel="icon" type="image/png" href="{{ asset('frontend') }}/img/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+   
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   </head>
 
   <body>
@@ -45,8 +52,22 @@
             </div>
             <div class="col-lg-6 col-md-6">
               <ul class="topbar-others-options">
-                <li><a href="{{ url('user/login') }}">Login</a></li>
-                <li><a href="{{ url('register') }}">Sign up</a></li>
+                @guest
+                    @if(Route::has('login'))
+                        <li><a href="{{ url('user/login') }}">Login</a></li>
+                        <li><a href="{{ url('register') }}">Sign up</a></li>
+                    @endif
+                    @else
+                        <li> <a  href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                logout
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+                @endguest
               </ul>
             </div>
           </div>
@@ -76,10 +97,10 @@
                 >
                   <ul class="navbar-nav">
                     <li class="nav-item">
-                      <a href="#" class="nav-link active"> Home </a>
+                      <a href="{{ url('/') }}" class="nav-link active"> Home </a>
                     </li>
                     <li class="nav-item">
-                      <a href="#" class="nav-link"> Groups </a>
+                      <a href="{{ url("tour/groups") }}" class="nav-link"> Groups </a>
                     </li>
                     <li class="nav-item">
                       <a href="#" class="nav-link"
@@ -104,6 +125,21 @@
                     </li>
                     <li class="nav-item">
                       <a href="#" class="nav-link">Contact </a>
+                    </li>
+                    <li class="nav-item">
+                    <div class="mx-auto pull-right" >
+            <div class="search" style="float: right;
+    margin-top: -2rem;
+    margin-top: 8px;
+
+            ">
+                <form action="{{ url("/search") }}" method="post">
+    @csrf
+    <input type="text" name="search_query" id="search_query" placeholder="Search by location...">
+    <button type="submit">Search</button>
+</form>
+            
+</div>
                     </li>
                   </ul>
                   <div class="others-options d-flex align-items-center">
@@ -248,5 +284,18 @@
   <script src="{{ asset('frontend') }}/js/jquery.meanmenu.js"></script>
   <script src="{{ asset('frontend') }}/js/owl.carousel.min.js"></script>
   <script src="{{ asset('frontend') }}/js/custom.js"></script>
+  <script>
+    $(function() {
+        $("#search_query").autocomplete({
+            source: "{{ url('search/autocomplete') }}", // The route to fetch autocomplete suggestions
+            minLength: 2, // Minimum number of characters to trigger autocomplete
+            select: function(event, ui) {
+                // Set the selected value in the input field
+                $("#search_query").val(ui.item.value);
+                // You can also redirect to the search page if needed
+            }
+        });
+    });
+</script>
 </body>
 </html>

@@ -29,8 +29,8 @@
                                 <div class="news_details_four_heading">
                                     <div class="new_four_card_lists">
                                         <ul>
-                                            <li>{{ $blog->created_at }} <i class="fas fa-circle"></i></li>
-                                            {{-- <li>Connley Jimmy</li> --}}
+                                            <li>Date: {{ $blog->created_at }} <i class="fas fa-circle"></i></li>
+                                            <li>Created by-{{ $blog->group_name }} <i class="fas fa-circle"></i></li>
                                         </ul>
                                     </div>
                                     <h2>{{ $blog->heading }}</h2>
